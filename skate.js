@@ -21,10 +21,12 @@ $(document).ready(function(){
         if (subHidden){
             $(this).children('.sub-drop').slideDown();
             $(this).children('.sub-drop').css('display', 'flex');
+            $(this).children('.plus-minus').html("&minus;")
             subHidden = false;
         }
         else {
             $(this).children('.sub-drop').slideUp();
+            $(this).children('.plus-minus').html("&plus;")
             subHidden = true;
         }
         

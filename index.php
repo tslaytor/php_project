@@ -26,45 +26,46 @@
                 </button>
                 <div class="nav-item-list">
                     <li class="nav-li">
+                        <span class="plus-minus">&plus;</span>
                         <a class="nav-a">Skateboards</a>
-                                            <ul class="sub-drop">
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Decks</a>
-                                                </li>
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Trucks</a>
-                                                </li>
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Wheels</a>
-                                                </li>
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Bearings</a>
-                                                </li>
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Hardware</a>
-                                                </li>
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Griptape</a>
-                                                </li>
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Complete</a>
-                                                </li>
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Equipment</a>
-                                                </li>
-                                                <li class="sub-li">
-                                                    <a class="sub-a">Protective Gear</a>
-                                                </li>
-                                            </ul>
+                        <ul class="sub-drop">
+                            <li class="sub-li">
+                                <a class="sub-a">Decks</a>
+                            </li>
+                            <li class="sub-li">
+                                <a class="sub-a">Trucks</a>
+                            </li>
+                            <li class="sub-li">
+                                <a class="sub-a">Wheels</a>
+                            </li>
+                            <li class="sub-li">
+                                <a class="sub-a">Bearings</a>
+                            </li>
+                            <li class="sub-li">
+                                <a class="sub-a">Hardware</a>
+                            </li>
+                            <li class="sub-li">
+                                <a class="sub-a">Griptape</a>
+                            </li>
+                            <li class="sub-li">
+                                <a class="sub-a">Complete</a>
+                            </li>
+                            <li class="sub-li">
+                                <a class="sub-a">Equipment</a>
+                            </li>
+                            <li class="sub-li">
+                                <a class="sub-a">Protective Gear</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-li">
-                        <a class="nav-a">Shoes</a>
+                        <span class="plus-minus">&plus;</span><a class="nav-a">Shoes</a>
                     </li>
                     <li class="nav-li">
-                        <a class="nav-a">Clothes</a>
+                        <span class="plus-minus">&plus;</span><a class="nav-a">Clothes</a>
                     </li>
                     <li class="nav-li">
-                        <a class="nav-a">Accessories</a>
+                        <span class="plus-minus">&plus;</span><a class="nav-a">Accessories</a>
                     </li>
                 </div>
                 

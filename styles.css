@@ -87,3 +87,7 @@ body {
     list-style: none;
     height: 22rem;
 }
+
+.plus-minus {
+    margin-right: 12px;
+}
