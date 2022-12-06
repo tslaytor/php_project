@@ -19,53 +19,106 @@
                 <a class="nav-logo" href="#">
                     Skate Shop
                 </a>
-                <button class="nav-toggle">
+                <button class="nav-toggle-button">
                     <span class="toggle-span"></span>
                     <span class="toggle-span"></span>
                     <span class="toggle-span"></span>
                 </button>
-                <div class="nav-item-list">
-                    <li class="nav-li">
-                        <span class="plus-minus">&plus;</span>
-                        <a class="nav-a">Skateboards</a>
-                        <ul class="sub-drop">
-                            <li class="sub-li">
-                                <a class="sub-a">Decks</a>
-                            </li>
-                            <li class="sub-li">
-                                <a class="sub-a">Trucks</a>
-                            </li>
-                            <li class="sub-li">
-                                <a class="sub-a">Wheels</a>
-                            </li>
-                            <li class="sub-li">
-                                <a class="sub-a">Bearings</a>
-                            </li>
-                            <li class="sub-li">
-                                <a class="sub-a">Hardware</a>
-                            </li>
-                            <li class="sub-li">
-                                <a class="sub-a">Griptape</a>
-                            </li>
-                            <li class="sub-li">
-                                <a class="sub-a">Complete</a>
-                            </li>
-                            <li class="sub-li">
-                                <a class="sub-a">Equipment</a>
-                            </li>
-                            <li class="sub-li">
-                                <a class="sub-a">Protective Gear</a>
-                            </li>
-                        </ul>
+                <div class="nav-list">
+                    <li class="nav-item">
+                        <div class="nav-item-title">
+                            <span class="plus-minus">&plus;</span>
+                            <span >Skateboards</span>
+                            <ul class="sub-list">
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Decks</a>
+                                </li>
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Trucks</a>
+                                </li>
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Wheels</a>
+                                </li>
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Bearings</a>
+                                </li>
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Hardware</a>
+                                </li>
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Griptape</a>
+                                </li>
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Complete</a>
+                                </li>
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Equipment</a>
+                                </li>
+                                <li class="sub-list_item">
+                                    <a class="sub-list_title">Protective Gear</a>
+                                </li>
+                            </ul>
+                        </div>     
                     </li>
-                    <li class="nav-li">
-                        <span class="plus-minus">&plus;</span><a class="nav-a">Shoes</a>
+                    <li class="nav-item">
+                        <div class="nav-item-title">
+                            <span class="plus-minus">&plus;</span>
+                            <span>Shoes</span>
+                            <ul class="sub-list">
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Mens</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Womens</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Skate</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Street</a>
+                                    </li>
+                                </ul>
+                        </div>
                     </li>
-                    <li class="nav-li">
-                        <span class="plus-minus">&plus;</span><a class="nav-a">Clothes</a>
+                    <li class="nav-item">
+                        <div class="nav-item-title">
+                            <span class="plus-minus">&plus;</span>
+                            <span>Clothes</span>
+                            <ul class="sub-list">
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Mens</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Womens</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Skate</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Street</a>
+                                    </li>
+                                </ul>
+                        </div>
                     </li>
-                    <li class="nav-li">
-                        <span class="plus-minus">&plus;</span><a class="nav-a">Accessories</a>
+                    <li class="nav-item">
+                        <div class="nav-item-title">
+                            <span class="plus-minus">&plus;</span>
+                            <span>Accessories</span>
+                            <ul class="sub-list">
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Mens</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Womens</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Skate</a>
+                                    </li>
+                                    <li class="sub-list_item">
+                                        <a class="sub-list_title">Street</a>
+                                    </li>
+                                </ul>
+                        </div>
                     </li>
                 </div>
                 
