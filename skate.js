@@ -17,23 +17,36 @@ $(document).ready(function(){
     })
 
     var subUp = true;
-    $(".nav-item").click(function(e){
-        if (subUp){
-            $(".nav-item_cover").css("display", "block");
-            $(this).children(".nav-item_cover").css("display", "none")
-            $(this).children(".sub-list").slideDown();
-            $(this).children(".plus-minus").html("&minus;");
-            subUp = false;
+    var currentGroup;
+    $(".nav-item").click(function(){
+        if(subUp){
+            currentGroup = $(this);
         }
-        else {
-            $(this).children(".sub-list").slideUp();
-            $(this).children(".plus-minus").html("&plus;");
-            $(".nav-item_cover").css("display", "none");
-            subUp = true;
+        subUp = subListToggler(subUp, currentGroup);
+    });
+
+    $(document).click(function(){
+        if(!subUp){
+            subUp = subListToggler(subUp, currentGroup);
         }
-        
-    })
+    });
 
     $(".sub-list").click(e => e.stopPropagation());
-    $(".nav-item_cover").click(e => e.stopPropagation());
+    $(".nav-item").click(e => e.stopPropagation());
   });
+
+
+
+function subListToggler(listIsUp, group){
+    if (listIsUp){
+        group.children(".sub-list").slideDown();
+        group.children(".plus-minus").html("&minus;");
+        listIsUp = false;
+    }
+    else {
+        group.children(".sub-list").slideUp();
+        group.children(".plus-minus").html("&plus;");
+        listIsUp = true;
+    }
+    return listIsUp;
+}
