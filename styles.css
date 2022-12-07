@@ -1,7 +1,6 @@
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-
 }
 
 body {
@@ -10,17 +9,14 @@ body {
 }
 
 .navigation-bar {
-    /* display: flex; */
     border-bottom: solid white 2px;
     padding: 12px;
     background-color: rgb(27, 27, 27);
     position: relative;
-    /* height: 48px; */
 }
 
 .inner-nav-container {
     display: flex;
-    /* border: solid green 2px; */
     justify-content: space-between;
     align-items: center;
 }
@@ -28,6 +24,7 @@ body {
 .nav-logo {
     text-decoration: none;
     color: white;
+    font-size: x-large;
 }
 
 .nav-toggle-button {
@@ -45,15 +42,13 @@ body {
     background-color: white;
 }
 .nav-list {
-    /* border: rgb(128, 0, 128) solid 2px; */
-    display: flex;
+    /* display: flex; -- ADDED DYNAMICALLY BY JQUERY */ 
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
     padding: 6px 24px;
-    color: white;
-    background-color: rgb(27, 27, 27);
-    /* height: 10rem; */
+    color: black;
+    background-color: rgb(206, 206, 206);
     position: absolute;
     top: 47px;
     right: 5px;
@@ -65,41 +60,47 @@ body {
     list-style: none;
 }
 
-.pop-down {
+/* .pop-down {
     transform: translateY(160px);
     animation: pop-down 3s ease-in-out 0 1 normal forwards;
-}
+} */
 
 .sub-list {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
     padding: 6px 24px;
-    color: white;
-    background-color: rgb(27, 27, 27);
+    color: black;
+    background-color: rgb(204, 204, 204);
     position: absolute;
-    /* right: 150%; */
     right: 110%;
     top: 0;
-    background-color: rgb(27, 27, 27);
     border: white solid 2px;
     display: none;
     list-style: none;
-    /* height: 22rem; */
     width: 150px;
+    font-weight: 300;
 }
 
 .nav-item, .sub-list_item {
     margin: 12px 6px;
     width: 100%;
-}
-
-.nav-item-title {
-    /* display: inline-block; */
     position: relative;
     width: 100%;
+    cursor: pointer;
 }
+
+.nav-item_cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.144);
+    display: none;
+
+}
+
 .plus-minus {
     margin-right: 12px;
+}
+
+.sub-list_item {
+    margin: 24px 0;
 }

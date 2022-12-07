@@ -1,34 +1,39 @@
 $(document).ready(function(){
-    var listHidden = true;
+    var up = true;
     $(".nav-toggle-button").click(function(){
-        if (listHidden){
+        if (up){
             $(".nav-list").slideDown()
             $(".nav-list").css('display', 'flex');
-            listHidden = false;
+            up = false;
             $(".toggle-span:first-of-type").fadeTo('',0.0);
             $(".toggle-span:last-of-type").fadeTo('',0.0);
         }
         else {
             $(".nav-list").slideUp()
-            listHidden = true;
+            up = true;
             $(".toggle-span:first-of-type").fadeTo('',1.0);
             $(".toggle-span:last-of-type").fadeTo('',1.0);
         }
     })
 
-    var subHidden = true;
-    $(".nav-item").click(function(){
-        if (subHidden){
-            $(this).children().children('.sub-list').slideDown();
-            $(this).children().children('.sub-list').css('display', 'flex');
-            $(this).children().children('.plus-minus').html("&minus;")
-            subHidden = false;
+    var subUp = true;
+    $(".nav-item").click(function(e){
+        if (subUp){
+            $(".nav-item_cover").css("display", "block");
+            $(this).children(".nav-item_cover").css("display", "none")
+            $(this).children(".sub-list").slideDown();
+            $(this).children(".plus-minus").html("&minus;");
+            subUp = false;
         }
         else {
-            $(this).children().children('.sub-list').slideUp();
-            $(this).children().children('.plus-minus').html("&plus;")
-            subHidden = true;
+            $(this).children(".sub-list").slideUp();
+            $(this).children(".plus-minus").html("&plus;");
+            $(".nav-item_cover").css("display", "none");
+            subUp = true;
         }
         
     })
+
+    $(".sub-list").click(e => e.stopPropagation());
+    $(".nav-item_cover").click(e => e.stopPropagation());
   });
