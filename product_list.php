@@ -1,26 +1,43 @@
 <?php include_once('header.php'); 
 
-$nav_item = $_GET["nav_item"];
+$id = $_GET["subcategory"];
 // $subnav_item = $_GET["subnav_item"];
 
-$statement = $pdo->prepare("SELECT * FROM category WHERE category = :category");
-$statement->bindValue(':category', $nav_item);
+$statement = $pdo->prepare("SELECT * FROM products WHERE subcategory_id = :id");
+$statement->bindValue(':id', $id);
 $statement->execute();
-$category_id = $statement->fetchAll(PDO::FETCH_ASSOC);
+$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    $statement = $pdo->prepare("SELECT * FROM subcategory WHERE category_id = :category_id");
-    $statement->bindValue(":category_id", $category_id[0]['id']);
-    $statement->execute();
-    $sub_categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+$statement = $pdo->prepare("SELECT * FROM brand");
+$statement->execute();
+$brands = $statement->fetchAll(PDO::FETCH_BOTH);
+
+?>
+
+
+
+<div class="products-container">
+    <?php foreach($products as $product):?>
+        <div class="products-container_item">
+            <div class="product-image_wrapper">
+                <img class="product-image" src="<?php echo $product['image'] ?> ">
+            </div>
+            <div>
+                <?php foreach($brands as $brand) :?>
+                    <?php if($brand['id'] === $product['brand_id']){
+                        echo $brand['brand'];
+                    }?>
+                <?php endforeach ?>
+            </div>
+    
+            
+            <?php echo $product['title']?>
+        </div>
+    <?php endforeach ?>
+</div>
 
 
 
 
-// print_r($nav_item);
-// print_r($subnav_item);
-var_dump($category_id[0]['id']);
-var_dump($sub_categories);
 
-foreach($sub_categories as $s): ?>
-<p><?php echo $s['subcategory_title'] ?></p>
-<?php endforeach ?>
+

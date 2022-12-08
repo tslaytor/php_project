@@ -16,15 +16,9 @@
         <script src="skate.js"></script>
     </head>
     <body>
-        <nav class="navigation-bar">
+        <div class="navigation-bar">
             <div class="nav-logo" href="#">Skate Shop</div>
-            <div class="inner-nav-container">
-                    
-                <button class="nav-toggle-button">
-                    <span class="toggle-span"></span>
-                    <span class="toggle-span"></span>
-                    <span class="toggle-span"></span>
-                </button>
+            <div class="inner-nav-container">     
                 <nav class="nav-list">
                     <?php 
                         $statement = $pdo->prepare("SELECT * FROM category");
@@ -34,11 +28,10 @@
                         $statement = $pdo->prepare("SELECT * FROM subcategory");
                         $statement->execute();
                         $sub_items = $statement->fetchAll(PDO::FETCH_ASSOC);
-                        // var_dump($sub_items);
                     ?>
                     <?php foreach ($categories as $key =>$category):?>
 
-                        <li class="nav-item">
+                        <div class="nav-item">
                             <span class="plus-minus">&plus;</span>
                             <span ><?php echo ucwords($category['category'])?></span>
                             <ul class="sub-list">
@@ -46,15 +39,20 @@
                                 <?php foreach($sub_items as $sub_item): ?>
                                     <?php if($sub_item["category_id"] === $category["id"]): ?>
                                         <li class="sub-list_item">
-                                        <a class="sub-list_title"><?php echo ucwords($sub_item["subcategory_title"]) ?></a>
+                                            <a href="product_list.php?subcategory=<?php echo $sub_item["id"]?>" class="sub-list_title"><?php echo ucwords($sub_item["subcategory_title"]) ?></a>
                                         </li>
                                     <?php endif ?>
                                 <?php endforeach ?>
                             </ul>
-                        </li>
-                    <?php endforeach ?>
-                    
+                                    </div>
+                    <?php endforeach ?>    
                 </nav>
-                
+
+                <div id="basket"></div> 
+                <button class="nav-toggle-button">
+                    <span class="toggle-span"></span>
+                    <span class="toggle-span"></span>
+                    <span class="toggle-span"></span>
+                </button>     
             </div>
-        </nav>
+        </div>

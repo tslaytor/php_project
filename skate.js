@@ -30,10 +30,26 @@ $(document).ready(function(){
             listIsUp = subListToggler(listIsUp, currentGroup);
         }
     });
-
     $(".sub-list").click(e => e.stopPropagation());
     $(".nav-item").click(e => e.stopPropagation());
-  });
+
+    gridRowHeight();
+    $(window).resize(gridRowHeight);
+
+    
+});
+
+
+function gridRowHeight(){
+    $item = $(".products-container_item")
+    $width = $item.width();
+    $item.css("height", $width * 1.82 );
+
+    $image = $(".product-image_wrapper")
+    $imageWidth = $image.width();
+    $image.css("height", $imageWidth * 1.16)
+
+}
 
 
 
@@ -50,3 +66,4 @@ function subListToggler(listIsUp, group){
     }
     return listIsUp;
 }
+
