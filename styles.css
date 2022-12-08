@@ -14,6 +14,7 @@ body {
     background-color: rgb(27, 27, 27);
     position: relative;
     display: flex;
+    z-index: 1;
 }
 
 .inner-nav-container {
@@ -56,7 +57,7 @@ body {
     top: 47px;
     right: 5px;
     display: none;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .nav-item {
@@ -105,6 +106,7 @@ body {
     list-style: none;
     width: 150px;
     font-weight: 300;
+    z-index: -1;
 }
 
 .sub-list_item {

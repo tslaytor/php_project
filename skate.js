@@ -16,18 +16,18 @@ $(document).ready(function(){
         }
     })
 
-    var subUp = true;
+    var listIsUp = true;
     var currentGroup;
     $(".nav-item").click(function(){
-        if(subUp){
+        if(listIsUp){
             currentGroup = $(this);
         }
-        subUp = subListToggler(subUp, currentGroup);
+        listIsUp = subListToggler(listIsUp, currentGroup);
     });
 
     $(document).click(function(){
-        if(!subUp){
-            subUp = subListToggler(subUp, currentGroup);
+        if(!listIsUp){
+            listIsUp = subListToggler(listIsUp, currentGroup);
         }
     });
 
