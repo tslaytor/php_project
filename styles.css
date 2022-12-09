@@ -38,6 +38,7 @@ body {
     border: none;
     cursor: pointer;
 }
+
 .toggle-span {
     display: inline-block;
     width: 24px;
@@ -45,6 +46,13 @@ body {
     margin: 3px;
     background-color: white;
 }
+
+#basket {
+    height: 100%;
+    width: 50px;
+    border: orange 2px solid;
+}
+
 .nav-list {
     /* display: flex; -- ADDED DYNAMICALLY BY JQUERY */ 
     flex-direction: column;
@@ -98,6 +106,7 @@ body {
 
 .sub-list_title {
     text-decoration: none;
+    color: inherit;
 
 }
 
@@ -131,16 +140,17 @@ body {
     }
 }
 
-.products-container {
+.products {
     display: grid;
     grid-template-columns: 1fr;
+    font-size: 0.9rem;
     /* grid-template-rows: 176vw; */
     /* grid-auto-rows: 176vw; */
 
 }
 
 @media(min-width: 320px){
-    .products-container {
+    .products {
         grid-template-columns: repeat(2, 1fr);
         /* grid-template-rows: 96vw;
         grid-auto-rows: 96vw; */
@@ -148,7 +158,7 @@ body {
 }
 
 @media(min-width: 560px){
-    .products-container {
+    .products {
         grid-template-columns: repeat(3, 1fr);
         /* grid-template-rows: 56vw;
         grid-auto-rows: 56vw; */
@@ -156,31 +166,53 @@ body {
 }
 
 @media(min-width: 768px){
-    .products-container {
+    .products {
         grid-template-columns: repeat(4, 1fr);
         /* grid-template-rows: 26vw;
         grid-auto-rows: 26vw; */
     }
 }
 
-.products-container_item {
+.products-item {
     border: solid salmon 2px;
     margin: 1rem;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
-#basket {
-    height: 100%;
-    width: 50px;
-    border: orange 2px solid;
-}
 
-.product-image_wrapper {
+
+.products-item_image-wrapper {
     width: 100%;
 }
 
-.product-image {
+.products-item_image {
     width: 100%;
     height: auto;
+}
+
+.products-item_listing {
+    flex-grow: 1;
+}
+
+.products-item_text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.products-item_text-top, 
+.products-item_text-bottom {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-around;
+} 
+
+.products-item_brand {
+    font-weight: 900;
+    font-size: 1rem;
+    /* margin-bottom: 1rem; */
 }

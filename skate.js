@@ -41,11 +41,11 @@ $(document).ready(function(){
 
 
 function gridRowHeight(){
-    $item = $(".products-container_item")
+    $item = $(".products-item")
     $width = $item.width();
-    $item.css("height", $width * 1.82 );
+    $item.css("min-height", $width * 1.82 );
 
-    $image = $(".product-image_wrapper")
+    $image = $(".products-item_image-wrapper")
     $imageWidth = $image.width();
     $image.css("height", $imageWidth * 1.16)
 

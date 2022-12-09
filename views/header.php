@@ -33,7 +33,7 @@
 
                         <div class="nav-item">
                             <span class="plus-minus">&plus;</span>
-                            <span ><?php echo ucwords($category['category'])?></span>
+                            <span><?php echo ucwords($category['category'])?></span>
                             <ul class="sub-list">
                             
                                 <?php foreach($sub_items as $sub_item): ?>
