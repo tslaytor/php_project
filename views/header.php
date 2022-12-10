@@ -10,10 +10,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="styles.css" rel="stylesheet">
+        <link href="../static/styles.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="skate.js"></script>
+        <script src="../static/skate.js"></script>
     </head>
     <body>
         <div class="navigation-bar">
@@ -48,7 +48,12 @@
                     <?php endforeach ?>    
                 </nav>
 
-                <div id="basket"></div> 
+                <div class="basket">
+                    <img class="basket-image"  src="../images/icons/basket/pngaaa.com-460382.png"></img>
+                </div>
+                <div class="profile">
+                    <img class="profile-image" src="../images/icons/profile/pngaaa.com-6282973.png"></img>
+                </div>
                 <button class="nav-toggle-button">
                     <span class="toggle-span"></span>
                     <span class="toggle-span"></span>

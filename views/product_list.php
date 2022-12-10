@@ -10,7 +10,7 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 $statement = $pdo->prepare("SELECT * FROM brand");
 $statement->execute();
-$brands = $statement->fetchAll(PDO::FETCH_BOTH);
+$brands = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -18,9 +18,9 @@ $brands = $statement->fetchAll(PDO::FETCH_BOTH);
 
 <div class="products">
     <?php foreach($products as $product):?>
-        <div class="products-item">
+        <a class="products-item" href="product.php?product_id=<?php echo $product['id']?>">
             <div class="products-item_image-wrapper">
-                <img class="products-item_image" src="<?php echo $product['image'] ?> ">
+                <img class="products-item_image" src="<?php echo "../".$product['image'] ?> ">
             </div>
             <div class="products-item_text">
                 <div class="products-item_text-top">
@@ -45,7 +45,7 @@ $brands = $statement->fetchAll(PDO::FETCH_BOTH);
             
                 
             
-        </div>
+                        </a>
     <?php endforeach ?>
 </div>
 

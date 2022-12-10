@@ -10,11 +10,12 @@ body {
 
 .navigation-bar {
     border-bottom: solid white 2px;
-    padding: 12px;
+    /* padding: 12px; */
     background-color: rgb(27, 27, 27);
     position: relative;
     display: flex;
     z-index: 1;
+    height: 48px;
 }
 
 .inner-nav-container {
@@ -28,7 +29,14 @@ body {
 .nav-logo {
     text-decoration: none;
     color: white;
-    font-size: x-large;
+    font-size: 2rem;
+    vertical-align: middle;
+    white-space: nowrap;
+    /* padding: 12px; */
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    cursor: default;
 }
 
 .nav-toggle-button {
@@ -37,6 +45,7 @@ body {
     background-color: rgb(27, 27, 27);
     border: none;
     cursor: pointer;
+    margin: 0 9px;
 }
 
 .toggle-span {
@@ -47,10 +56,16 @@ body {
     background-color: white;
 }
 
-#basket {
-    height: 100%;
-    width: 50px;
-    border: orange 2px solid;
+.basket,
+.profile {
+    margin: 0 9px;
+    height: 50%;
+    width: 36px;
+}
+
+.basket-image,
+.profile-image {
+    height: 100%;    
 }
 
 .nav-list {
@@ -96,7 +111,6 @@ body {
     list-style: none;
     width: 150px;
     font-weight: 300;
-    z-index: -1;
    
 }
 
@@ -140,6 +154,63 @@ body {
     }
 }
 
+
+
+
+.brand-homepage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1800px;
+    margin: auto;
+    grid-gap: 16px;
+}
+
+.brand-homepage_item {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    padding: 6px;
+}
+
+.brand-homepage_logo {
+    width: 100%;
+    min-width: 136px;
+    max-width: 170px;
+}
+
+@media(min-width: 435px){
+    .brand-homepage {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(min-width: 590px){
+    .brand-homepage {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media(min-width: 830px){
+    .brand-homepage {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media(min-width: 1050px){
+    .brand-homepage {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media(min-width: 1500px){
+    .brand-homepage {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+
 .products {
     display: grid;
     grid-template-columns: 1fr;
@@ -179,6 +250,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    color: inherit;
+    text-decoration: inherit;
 }
 
 
@@ -215,4 +288,92 @@ body {
     font-weight: 900;
     font-size: 1rem;
     /* margin-bottom: 1rem; */
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.product_image {
+    width: 100%;
+}
+
+.product_brand,
+.product_text,
+.product_price {
+    padding: 12px;
+}
+
+.product_brand-logo {
+    width: 100px;
+}
+
+.product_brand-text {
+    font-weight: 900;
+}
+
+.product_text{
+    /* font-weight: bolder; */
+}
+
+.product_price {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* CSS */
+.product_add-to-basket,
+.product_add-to-wishlist {
+    margin: 24px 12px;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    text-decoration: none;
+}
+
+.product_add-to-basket{
+    background-color: #0095ff;
+    color: white;
+}
+
+.product_add-to-basket:hover,
+.product_add-to-basket:focus{
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;;
+}
+
+.product_add-to-basket:hover {
+    transform: translateY(-1px);
+}
+
+.product_add-to-basket:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+}
+
+.product_stock-level {
+    font-weight: 600;
+    padding: 16px;
+}
+
+.in-stock {
+    color: rgb(53, 156, 33);
+}
+.out-of-stock {
+    color: tomato;
 }

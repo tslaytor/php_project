@@ -33,14 +33,21 @@ $(document).ready(function(){
     $(".sub-list").click(e => e.stopPropagation());
     $(".nav-item").click(e => e.stopPropagation());
 
-    gridRowHeight();
-    $(window).resize(gridRowHeight);
+    productItemHeight();
+    brandIconHeight();
+    $(window).resize(productItemHeight);
+    $(window).resize(brandIconHeight);
 
     
 });
 
+function brandIconHeight(){
+    $item = $(".brand-homepage_logo");
+    $width = $item.width();
+    $item.css("max-height", $width * 1.82 );
+}
 
-function gridRowHeight(){
+function productItemHeight(){
     $item = $(".products-item")
     $width = $item.width();
     $item.css("min-height", $width * 1.82 );
