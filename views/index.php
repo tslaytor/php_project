@@ -1,4 +1,7 @@
 <?php include_once('header.php'); 
+
+    
+
     
     $statement = $pdo->prepare("SELECT * FROM brand");
     $statement->execute();

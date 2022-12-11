@@ -15,7 +15,7 @@ body {
     position: relative;
     display: flex;
     z-index: 1;
-    height: 48px;
+    height: 56px;
 }
 
 .inner-nav-container {
@@ -56,6 +56,24 @@ body {
     background-color: white;
 }
 
+.profile-wrapper {
+    height: 80%;
+    width: fit-content;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-username {
+    font-size: 0.8rem;
+}
 .basket,
 .profile {
     margin: 0 9px;
@@ -64,9 +82,18 @@ body {
 }
 
 .basket-image,
-.profile-image {
+.profile-image,
+.navbar-icons {
     height: 100%;    
 }
+
+.navbar-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 12px;
+}
+
 
 .nav-list {
     /* display: flex; -- ADDED DYNAMICALLY BY JQUERY */ 
@@ -163,6 +190,7 @@ body {
     max-width: 1800px;
     margin: auto;
     grid-gap: 16px;
+    background-color: rgb(194, 208, 221);
 }
 
 .brand-homepage_item {

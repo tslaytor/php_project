@@ -2,19 +2,20 @@ $(document).ready(function(){
     var up = true;
     $(".nav-toggle-button").click(function(){
         if (up){
-            $(".nav-list").slideDown()
-            $(".nav-list").css('display', 'flex');
+            $(this).siblings(".nav-list").slideDown()
+            $(this).siblings(".nav-list").css('display', 'flex');
             up = false;
             $(".toggle-span:first-of-type").fadeTo('',0.0);
             $(".toggle-span:last-of-type").fadeTo('',0.0);
         }
         else {
-            $(".nav-list").slideUp()
+            $(this).siblings(".nav-list").slideUp()
             up = true;
             $(".toggle-span:first-of-type").fadeTo('',1.0);
             $(".toggle-span:last-of-type").fadeTo('',1.0);
         }
     })
+
 
     var listIsUp = true;
     var currentGroup;
