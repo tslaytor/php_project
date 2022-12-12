@@ -1,7 +1,5 @@
 <?php 
-    $pdo = new PDO('mysql:host=localhost;dbname=skate_shop', 'root', 'root');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+    include_once('../dbconnection.php');
     session_start();
     
     // set default session values

@@ -34,8 +34,16 @@ $brand = $statement->fetch(PDO::FETCH_ASSOC);
             echo "<span class='out-of-stock'>Out of stock</span>";
         }
         ?></div>
-    <button class="product_add-to-basket">Add to basket</button>
-    <button class="product_add-to-wishlist">Add to wishlist</button>
+    <form class="product-form" method="POST" action="../addtobasket.php">
+        <input type="hidden" name="product_id" value="<?php echo $product_id?>">
+        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']?>">
+        <input type="submit" class="product_add-to-basket">Add to basket</button>
+        
+    </form>
+    <form>
+        <button class="product_add-to-wishlist">Add to wishlist</button>
+    </form>
+    
     <div class="product_description"><?php echo $product['description'] ?></div>
 </div>
 
