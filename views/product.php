@@ -34,10 +34,10 @@ $brand = $statement->fetch(PDO::FETCH_ASSOC);
             echo "<span class='out-of-stock'>Out of stock</span>";
         }
         ?></div>
-    <form class="product-form" method="POST" action="../addtobasket.php">
+    <form class="product-form" method="POST">
         <input type="hidden" name="product_id" value="<?php echo $product_id?>">
-        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']?>">
-        <input type="submit" class="product_add-to-basket">Add to basket</button>
+        <input type="hidden" name="user_id" value="<?php echo (array_key_exists('user_id', $_SESSION)) ? $_SESSION['user_id'] : 'guest' ;?>">
+        <input type="submit" value="Add to Basket" class="product_add-to-basket <?php if($product['stock_level'] <= 0){echo 'inactive';} ?>"></button>
         
     </form>
     <form>

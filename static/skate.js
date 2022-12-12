@@ -38,6 +38,13 @@ $(document).ready(function(){
         listIsUp = subListToggler(listIsUp, currentGroup);
     })
 
+    $(".basket").click(function(){
+        if(listIsUp){
+            currentGroup = $(this);
+        }
+        listIsUp = subListToggler(listIsUp, currentGroup);
+    })
+
     $(document).click(function(){
         if(!listIsUp){
             listIsUp = subListToggler(listIsUp, currentGroup);
@@ -45,15 +52,38 @@ $(document).ready(function(){
     });
 
 
-
     $(".sub-list").click(e => e.stopPropagation());
     $(".nav-item").click(e => e.stopPropagation());
     $(".profile-wrapper").click(e=> e.stopPropagation());
+    $(".basket").click(e=> e.stopPropagation());
 
     productItemHeight();
     brandIconHeight();
     $(window).resize(productItemHeight);
     $(window).resize(brandIconHeight);
+
+
+    $(".product-form").submit(function(){
+        var values = {};
+        $.each($('.product-form').serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+        });
+        console.log(values['product_id'])
+        console.log(values['user_id'])
+
+        $.post('../addtobasket.php', 
+        {
+            'user_id': values['user_id'],
+            'product_id': values['product_id']
+        }
+        );
+
+        return false;
+    })
+
+        
+        
+
 
     
 });

@@ -7,7 +7,7 @@
     // $_SESSION['username'] = "Guest";
     
     // reassign session values if login form submitted
-    if($_SERVER['REQUEST_METHOD'] === "POST"){
+    if($_SERVER['REQUEST_METHOD'] === "POST" && array_key_exists('username', $_POST)){
         if(array_key_exists('logout', $_POST)){
             // var_dump($_POST['logout']);
             unset($_SESSION['user_id']);
@@ -93,6 +93,28 @@
                 <div class="navbar-icons">
                     <div class="basket">
                         <img class="basket-image"  src="../images/icons/basket/pngaaa.com-460382.png"></img>
+                        <span class="basket-count"></span>
+                        <div class="sub-list basket-list">
+                            <?php if(array_key_exists('username', $_SESSION)) :?>
+                                <?php 
+                                    $statement = $pdo->prepare('SELECT * FROM basket WHERE user_id = :user_id ');
+                                    $statement->bindValue(':user_id', $_SESSION['user_id']);
+                                    $statement->execute();
+                                    $items = $statement->fetchAll(PDO::FETCH_ASSOC);
+                                    // var_dump($items) ;
+                                ?>
+                                <?php foreach($items as $item) :?>
+                                    <?php 
+                                        $statement = $pdo->prepare('SELECT * FROM products WHERE id = :product_id ');
+                                        $statement->bindValue(':product_id', $item['product_id']);
+                                        $statement->execute();
+                                        $product = $statement->fetch(PDO::FETCH_ASSOC);
+                                    ?>
+                                    <div><?php echo $product['title'] ;?></div>
+                                    <img src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;">
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </div>
                     </div>
                     <div class="profile-wrapper">
                         <div class="profile">

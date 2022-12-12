@@ -81,6 +81,11 @@ body {
 .nav-username {
     font-size: 0.8rem;
 }
+
+.basket {
+    position: relative;
+}
+
 .basket,
 .profile {
     margin: 0 9px;
@@ -92,6 +97,17 @@ body {
 .profile-image,
 .navbar-icons {
     height: 100%;    
+}
+
+.basket-count {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .navbar-icons {
@@ -169,6 +185,11 @@ div.sub-list.profile-dropdown {
     top: 50px;
     width: fit-content;
     height: 200px;
+}
+
+div.sub-list.basket-list {
+    left: -116px;
+    top: 42px;
 }
 
 @media(min-width: 650px){
@@ -394,6 +415,12 @@ div.sub-list.profile-dropdown {
 .product_add-to-basket{
     background-color: #0095ff;
     color: white;
+}
+
+.inactive {
+    cursor: not-allowed;
+    background-color: gray;
+    pointer-events: none;
 }
 
 .product_add-to-basket:hover,
