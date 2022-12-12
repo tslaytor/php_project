@@ -3,20 +3,37 @@
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     session_start();
-
+    
+    // set default session values
+    // $_SESSION['user_id'] = NULL;
+    // $_SESSION['username'] = "Guest";
+    
+    // reassign session values if login form submitted
     if($_SERVER['REQUEST_METHOD'] === "POST"){
-        $_SESSION['user_id'] = $_POST['user_id'];
-        $statement = $pdo->prepare("SELECT username from user where id = :id");
-        $statement->bindValue(':id', $_SESSION['user_id']);
-        $statement->execute();
-        $statement->fetch(PDO::FETCH_ASSOC);
-        $username = $statement['username'];
-    }
-    else {
+        if(array_key_exists('logout', $_POST)){
+            // var_dump($_POST['logout']);
+            unset($_SESSION['user_id']);
+            unset($_SESSION['username']);
+        }
+        else{
+            $statement = $pdo->prepare("SELECT * from user where username = :username");
+            $statement->bindValue(':username', $_POST['username']);
+            $statement->execute();
+            $user = $statement->fetch(PDO::FETCH_ASSOC);
+            if($user){
+                if ($_POST['password'] === $user['password']){
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['username'] = $user['username'];
+                }
+                else {
+                    var_dump($_SESSION);
+                }
+            }
+        }
         
-        $_SESSION['user_id'] = NULL;
-        $_SESSION['user_name'] = "Guest";
     }
+
+    
      
 
 ?>
@@ -33,16 +50,16 @@
         <script src="../static/skate.js"></script>
     </head>
     <body>
-        <div class="navigation-bar">
+        <nav class="navigation-bar">
             <a class="nav-logo" href="index.php">Skate Shop</a>
             <div class="inner-nav-container">
-                <div>
+                <!-- <div> -->
                     <button class="nav-toggle-button">
                         <span class="toggle-span"></span>
                         <span class="toggle-span"></span>
                         <span class="toggle-span"></span>
                     </button>      
-                    <nav class="nav-list">
+                    <div class="nav-list">
                         <?php 
                             $statement = $pdo->prepare("SELECT * FROM category");
                             $statement->execute();
@@ -69,7 +86,7 @@
                                 </ul>
                                         </div>
                         <?php endforeach ?>    
-                    </nav>
+                    <!-- </div> -->
                 </div>
                 
 
@@ -83,19 +100,40 @@
                         <div class="profile">
                             <img class="profile-image" src="../images/icons/profile/pngaaa.com-6282973.png"></img>
                         </div>
-                        <div class="nav-username"><?php echo $_SESSION['user_name']?></div>
-                        <!-- <ul class="nav-list">
-                            <form method="post">
-                                <lable>Username</lable>
-                                <input type="text">
-                                <label>Password</label>
-                                <input type="password">
-                            </form> -->
-                        </ul>
+                        <div class="nav-username"><?php
+                        if(array_key_exists('username', $_SESSION)){
+                            echo $_SESSION['username'];
+                        }
+                        else {
+                            echo 'Guest';
+                        }
+                        ?></div>
+                        <div class="sub-list profile-dropdown">
+                            <?php if(!array_key_exists('username', $_SESSION)) :?>
+                                <form class="login-form" method="post">
+                                    <div>
+                                        <lable>Username</lable>
+                                        <input type="text" name="username">
+                                    </div>
+                                    <div>
+                                        <label>Password</label>
+                                        <input type="password" name="password">
+                                    </div>
+                                    <input type="submit">
+                                    <a>Register</a>
+                                </form>
+                            <?php else : ?>
+                                <form method="post">
+                                    <input name="logout" type="hidden">
+                                    <input type="submit" value="Log Out">
+                                </form>
+                            <?php endif ?>
+                        </div>
                     </div>
+                   
                 </div>
                
                 
                     
             </div>
-        </div>
+        </nav>

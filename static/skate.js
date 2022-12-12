@@ -16,7 +16,6 @@ $(document).ready(function(){
         }
     })
 
-
     var listIsUp = true;
     var currentGroup;
     $(".nav-item").click(function(){
@@ -24,15 +23,32 @@ $(document).ready(function(){
             currentGroup = $(this);
         }
         listIsUp = subListToggler(listIsUp, currentGroup);
+        if(listIsUp){
+            $(this).children(".plus-minus").html("&plus;");
+        }
+        else {
+            $(this).children(".plus-minus").html("&minus;");
+        }
     });
+
+    $(".profile-wrapper").click(function(){
+        if(listIsUp){
+            currentGroup = $(this);
+        }
+        listIsUp = subListToggler(listIsUp, currentGroup);
+    })
 
     $(document).click(function(){
         if(!listIsUp){
             listIsUp = subListToggler(listIsUp, currentGroup);
         }
     });
+
+
+
     $(".sub-list").click(e => e.stopPropagation());
     $(".nav-item").click(e => e.stopPropagation());
+    $(".profile-wrapper").click(e=> e.stopPropagation());
 
     productItemHeight();
     brandIconHeight();
@@ -59,17 +75,13 @@ function productItemHeight(){
 
 }
 
-
-
 function subListToggler(listIsUp, group){
     if (listIsUp){
         group.children(".sub-list").slideDown();
-        group.children(".plus-minus").html("&minus;");
         listIsUp = false;
     }
     else {
         group.children(".sub-list").slideUp();
-        group.children(".plus-minus").html("&plus;");
         listIsUp = true;
     }
     return listIsUp;
