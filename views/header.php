@@ -117,9 +117,19 @@
                                             $statement->execute();
                                             $product = $statement->fetch(PDO::FETCH_ASSOC);
                                         ?>
-                                        <div><?php echo $product['title'] ;?></div>
-                                        <img src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;">
-                                        <div><?php echo $item['quantity']; ?></div>
+                                        <div class="hb-item">
+                                            <div class="hb-item_title"><?php echo $product['title'] ;?></div>
+                                            <img class="hb-item_image" src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;">
+                                            <div  class="hb-item_quantity-wrap">
+                                                Quantity
+                                                <input class="hb-item_quantity" value="<?php echo $item['quantity']; ?>"></input>
+                                            </div>
+                                            <div>
+                                                <div>price</div>
+                                                <div>$<?php echo $item['quantity'] * $product['price']?></div>
+                                            </div>
+                                        </div>
+                                            
                                     <?php endforeach ?>
                                 <?php endif ?>
                             <?php endif ?>
