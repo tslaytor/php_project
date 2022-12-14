@@ -104,11 +104,10 @@
                                     $statement->bindValue(':user_id', $_SESSION['user_id']);
                                     $statement->execute();
                                     $items = $statement->fetchAll(PDO::FETCH_ASSOC);
-                                    // var_dump($items) ;
                                 ?>
 
                                 <!-- check here if any items first -->
-                                <?php if(count($items) <= 0) :?>
+                                <?php if(!$items) :?>
                                     <div>Basket empty</div>
                                 <?php else :?>
                                     <?php foreach($items as $item) :?>
@@ -120,6 +119,7 @@
                                         ?>
                                         <div><?php echo $product['title'] ;?></div>
                                         <img src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;">
+                                        <div><?php echo $item['quantity']; ?></div>
                                     <?php endforeach ?>
                                 <?php endif ?>
                             <?php endif ?>

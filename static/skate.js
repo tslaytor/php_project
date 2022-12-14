@@ -63,29 +63,33 @@ $(document).ready(function(){
     $(window).resize(brandIconHeight);
 
 
+
     $(".product_add-to-basket").click(function(){
         var values = {};
         $.each($('.product-form').serializeArray(), function(i, field) {
         values[field.name] = field.value;
         });
-        console.log(values['product_id'])
-        console.log(values['user_id'])
 
-        $.post('../addtobasket.php', 
-        {
-            'user_id': values['user_id'], 
-            'product_id': values['product_id'],
-            'no': 'way'
-        });
+        if(values['quant_in_basket']){
+            if(values['stock'] <= values['quant_in_basket']){
+                alert("We don't have enough in stock to add more to your basket")
+                return false
+            }
+        }
+       
+        $.ajax({
+            method: "post",
+            url: "../addtobasket.php",
+            data: { 'user_id': values['user_id'], 'product_id': values['product_id'] }
+          })
+            .done(function() {
+              location.reload();
+            });
+        
+        return false
 
-        return false;
+         
     })
-
-        
-        
-
-
-    
 });
 
 function brandIconHeight(){

@@ -1,9 +1,5 @@
 <?php 
 include_once('header.php');
-// echo "hello" ;
-
-var_dump($_POST);
-// exit;
 
 $product_id = $_GET['product_id'];
 
@@ -16,6 +12,15 @@ $statement = $pdo->prepare("SELECT * FROM brand WHERE id = :brand_id");
 $statement->bindValue(':brand_id', $product['brand_id']);
 $statement->execute();
 $brand = $statement->fetch(PDO::FETCH_ASSOC);
+
+if(array_key_exists('user_id', $_SESSION)){
+    $statement = $pdo->prepare("SELECT * FROM basket WHERE user_id = :user_id AND product_id = :product_id");
+    $statement->bindValue(':user_id', $_SESSION['user_id']);
+    $statement->bindValue(':product_id', $product_id);
+    $statement->execute();
+    $thisProductInBasket = $statement->fetch(PDO::FETCH_ASSOC);
+}
+
 
 ?>
 
@@ -40,6 +45,8 @@ $brand = $statement->fetch(PDO::FETCH_ASSOC);
     <form class="product-form">
         <input type="hidden" name="product_id" value="<?php echo $product_id?>">
         <input type="hidden" name="user_id" value="<?php echo (array_key_exists('user_id', $_SESSION)) ? $_SESSION['user_id'] : 'guest' ;?>">
+        <input type="hidden" name="stock" value="<?php echo $product['stock_level']?>">
+        <input type="hidden" name="quant_in_basket" value="<?php echo $thisProductInBasket ? $thisProductInBasket['quantity'] : false ?>">
         <input type="button" value="Add to Basket" class="product_add-to-basket <?php if($product['stock_level'] <= 0){echo 'inactive';} ?>"></button>
         
     </form>
