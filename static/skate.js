@@ -63,7 +63,7 @@ $(document).ready(function(){
     $(window).resize(brandIconHeight);
 
 
-    $(".product-form").submit(function(){
+    $(".product_add-to-basket").click(function(){
         var values = {};
         $.each($('.product-form').serializeArray(), function(i, field) {
         values[field.name] = field.value;
@@ -73,10 +73,10 @@ $(document).ready(function(){
 
         $.post('../addtobasket.php', 
         {
-            'user_id': values['user_id'],
-            'product_id': values['product_id']
-        }
-        );
+            'user_id': values['user_id'], 
+            'product_id': values['product_id'],
+            'no': 'way'
+        });
 
         return false;
     })

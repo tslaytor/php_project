@@ -2,6 +2,9 @@
 include_once('header.php');
 // echo "hello" ;
 
+var_dump($_POST);
+// exit;
+
 $product_id = $_GET['product_id'];
 
 $statement = $pdo->prepare("SELECT * FROM products WHERE id = :id");
@@ -34,10 +37,10 @@ $brand = $statement->fetch(PDO::FETCH_ASSOC);
             echo "<span class='out-of-stock'>Out of stock</span>";
         }
         ?></div>
-    <form class="product-form" method="POST">
+    <form class="product-form">
         <input type="hidden" name="product_id" value="<?php echo $product_id?>">
         <input type="hidden" name="user_id" value="<?php echo (array_key_exists('user_id', $_SESSION)) ? $_SESSION['user_id'] : 'guest' ;?>">
-        <input type="submit" value="Add to Basket" class="product_add-to-basket <?php if($product['stock_level'] <= 0){echo 'inactive';} ?>"></button>
+        <input type="button" value="Add to Basket" class="product_add-to-basket <?php if($product['stock_level'] <= 0){echo 'inactive';} ?>"></button>
         
     </form>
     <form>

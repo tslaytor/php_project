@@ -91,7 +91,10 @@
                 
 
                 <div class="navbar-icons">
-                    <div class="basket">
+                   
+                
+                
+                <div class="basket">
                         <img class="basket-image"  src="../images/icons/basket/pngaaa.com-460382.png"></img>
                         <span class="basket-count"></span>
                         <div class="sub-list basket-list">
@@ -103,19 +106,28 @@
                                     $items = $statement->fetchAll(PDO::FETCH_ASSOC);
                                     // var_dump($items) ;
                                 ?>
-                                <?php foreach($items as $item) :?>
-                                    <?php 
-                                        $statement = $pdo->prepare('SELECT * FROM products WHERE id = :product_id ');
-                                        $statement->bindValue(':product_id', $item['product_id']);
-                                        $statement->execute();
-                                        $product = $statement->fetch(PDO::FETCH_ASSOC);
-                                    ?>
-                                    <div><?php echo $product['title'] ;?></div>
-                                    <img src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;">
-                                <?php endforeach ?>
+
+                                <!-- check here if any items first -->
+                                <?php if(count($items) <= 0) :?>
+                                    <div>Basket empty</div>
+                                <?php else :?>
+                                    <?php foreach($items as $item) :?>
+                                        <?php 
+                                            $statement = $pdo->prepare('SELECT * FROM products WHERE id = :product_id ');
+                                            $statement->bindValue(':product_id', $item['product_id']);
+                                            $statement->execute();
+                                            $product = $statement->fetch(PDO::FETCH_ASSOC);
+                                        ?>
+                                        <div><?php echo $product['title'] ;?></div>
+                                        <img src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;">
+                                    <?php endforeach ?>
+                                <?php endif ?>
                             <?php endif ?>
                         </div>
                     </div>
+
+
+
                     <div class="profile-wrapper">
                         <div class="profile">
                             <img class="profile-image" src="../images/icons/profile/pngaaa.com-6282973.png"></img>
