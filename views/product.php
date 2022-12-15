@@ -46,7 +46,7 @@ if(array_key_exists('user_id', $_SESSION)){
         <input type="hidden" name="product_id" value="<?php echo $product_id?>">
         <input type="hidden" name="user_id" value="<?php echo (array_key_exists('user_id', $_SESSION)) ? $_SESSION['user_id'] : 'guest' ;?>">
         <input type="hidden" name="stock" value="<?php echo $product['stock_level']?>">
-        <input type="hidden" name="quant_in_basket" value="<?php echo $thisProductInBasket ? $thisProductInBasket['quantity'] : false ?>">
+        <input type="hidden" name="quant_in_basket" value="<?php echo $thisProductInBasket ? $thisProductInBasket['quantity'] : 0 ?>">
         <input type="button" value="Add to Basket" class="product_add-to-basket <?php if($product['stock_level'] <= 0){echo 'inactive';} ?>"></button>
         
     </form>

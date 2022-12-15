@@ -105,6 +105,7 @@
                                     $statement->execute();
                                     $items = $statement->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
+                                <input type="hidden" class="user-id" value="<?php echo $_SESSION['user_id']?>">
 
                                 <!-- check here if any items first -->
                                 <?php if(!$items) :?>
@@ -122,7 +123,15 @@
                                             <img class="hb-item_image" src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;">
                                             <div  class="hb-item_quantity-wrap">
                                                 Quantity
-                                                <input class="hb-item_quantity" value="<?php echo $item['quantity']; ?>"></input>
+                                                <div>
+                                                    <span class="minustobasket">&minus;</span>
+                                                    <input class="item-id" type="hidden" value="<?php echo $item['product_id']?>">
+                                                    
+                                                    <input class="product-stock" type="hidden" value="<?php echo $product['stock_level']?>">
+                                                    <input class="hb-item_quantity" value="<?php echo $item['quantity']; ?>"></input>
+                                                    <span class="plustobasket">&plus;</span>
+                                                </div>
+                                                
                                             </div>
                                             <div>
                                                 <div>price</div>

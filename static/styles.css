@@ -132,17 +132,7 @@ body {
     /* z-index: -1; */
 }
 
-.nav-item {
-    list-style: none;
-}
 
-.nav-item, .sub-list_item {
-    margin: 12px 6px;
-    width: 100%;
-    position: relative;
-    width: 100%;
-    cursor: pointer;
-}
 
 .plus-minus {
     margin-right: 12px;
@@ -161,6 +151,18 @@ body {
     width: 150px;
     font-weight: 300;
    
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-item, .sub-list_item {
+    margin: 12px 6px;
+    width: 100%;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
 }
 
 .sub-list_item {
@@ -188,7 +190,7 @@ div.sub-list.profile-dropdown {
 }
 
 div.sub-list.basket-list {
-    display: flex;
+    display: none;
     flex-direction: column;
     width: 400px;
     left: -500px;
