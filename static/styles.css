@@ -192,13 +192,14 @@ div.sub-list.profile-dropdown {
 div.sub-list.basket-list {
     display: none;
     flex-direction: column;
-    width: 400px;
-    left: -500px;
+    width: 800px;
+    left: -700px;
     top: 42px;
 }
 
 .basket-list > .hb-item{
     display: flex;
+    align-items: center;
     margin: 12px;
     background-color: white;
 }
@@ -212,14 +213,18 @@ div.sub-list.basket-list {
     margin: 12px;
 }
 
+.hb-item_title {
+    width: 200px;
+}
 .hb-item_quantity-wrap{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 150px;
 }
 .hb-item_quantity {
     display: inline-block;
-    width: 20px;
+    width: 50px;
     text-align: center;
 }
 

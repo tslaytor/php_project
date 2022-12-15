@@ -106,8 +106,6 @@
                                     $items = $statement->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
                                 <input type="hidden" class="user-id" value="<?php echo $_SESSION['user_id']?>">
-
-                                <!-- check here if any items first -->
                               
                                     <div class= <?php  echo !$items ? "basket-message" : "basket-message hidden" ?> >Basket empty</div>
                                     
@@ -144,7 +142,7 @@
                                             <div>
                                                 <div>price</div>
                                                 
-                                                <div class="total-price-display"><?php echo $item['quantity'] * $product['price']?></div>
+                                                <div class="total-price-display">$ <?php echo $item['quantity'] * $product['price']?></div>
                                             </div>
 
                                             <div class="trash">
@@ -154,8 +152,26 @@
                                         </div>
                                             
                                     <?php endforeach ?>
+
                             <?php endif ?>
-                            
+                            <div>
+                                <span>Basket total: </span>
+                                <?php 
+                                $total = 0;
+                                foreach($items as $item) {
+                                    $statement = $pdo->prepare('SELECT * FROM products WHERE id = :product_id ');
+                                        $statement->bindValue(':product_id', $item['product_id']);
+                                        $statement->execute();
+                                        $product = $statement->fetch(PDO::FETCH_ASSOC);
+                                        $total += $item['quantity'] * $product['price'];
+                                }
+                                    
+                                            
+                                        ?>
+                                        
+                                <span class="total-cost">$ <?php echo $total ?></span>
+                                <input type="hidden" class="total-cost_value" value="<?php echo $total?>">
+                            </div>
                         </div>
                     </div>
 
