@@ -108,9 +108,16 @@
                                 <input type="hidden" class="user-id" value="<?php echo $_SESSION['user_id']?>">
 
                                 <!-- check here if any items first -->
-                                <?php if(!$items) :?>
-                                    <div>Basket empty</div>
-                                <?php else :?>
+                              
+                                    <div class= <?php  echo !$items ? "basket-message" : "basket-message hidden" ?> >Basket empty</div>
+                                    
+                                    <?php
+                                    $total = 0;
+                                    foreach($items as $item){
+                                        $total += $item['quantity']; 
+                                    }
+                                        ?>
+                                    <input type="hidden" class="total-items" value="<?php echo $total;?>">
                                     <?php foreach($items as $item) :?>
                                         <?php 
                                             $statement = $pdo->prepare('SELECT * FROM products WHERE id = :product_id ');
@@ -140,8 +147,8 @@
                                         </div>
                                             
                                     <?php endforeach ?>
-                                <?php endif ?>
                             <?php endif ?>
+                            
                         </div>
                     </div>
 

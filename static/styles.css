@@ -255,7 +255,9 @@ div.sub-list.basket-list {
 }
 
 
-
+.hidden {
+    display: none;
+}
 
 .brand-homepage {
     display: grid;
