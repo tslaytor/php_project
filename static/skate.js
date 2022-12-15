@@ -96,6 +96,9 @@ $(document).ready(function(){
         var quantBox = $(this).siblings('.hb-item_quantity');
         var quant = $(this).siblings('.hb-item_quantity').val();
         var stock = $(this).siblings('.product-stock').val();
+        var productPrice = parseInt($(this).siblings('.product-price').val())
+        var totalItemPrice = $(this).siblings('.total-item-price');
+        var totalPriceDispay = $(this).parent().parent().siblings().children('.total-price-display')
         if (quant >= stock){
             alert("We don't have enough in stock to add more to your basket")
             return false
@@ -106,17 +109,18 @@ $(document).ready(function(){
             url: "../addtobasket.php",
             data: { 'user_id': user_id, 'product_id': product_id }
         })
-        .done(function() {
+        .done(function(e) {
             var x = parseInt(quant) + 1;
             quantBox.val(x);
             quantBox.attr('value', x);
-            console.log('first')
 
-                console.log("second")
-                var totalItems = $('.total-items')
-                var totalItemsVal = parseInt(totalItems.val());
-                totalItems.val(totalItemsVal + 1)
-                totalItems.attr('value', totalItemsVal + 1)
+            var totalItems = $('.total-items')
+            var totalItemsVal = parseInt(totalItems.val());
+            totalItems.val(totalItemsVal + 1)
+            totalItems.attr('value', totalItemsVal + 1)
+
+            totalItemPrice.val(parseInt(totalItemPrice.val()) + productPrice);
+            totalPriceDispay.html(totalItemPrice.val());
 
             
         });
@@ -125,7 +129,6 @@ $(document).ready(function(){
 
     $('.minustobasket').click(function(){
         var item = $(this).parent().parent().parent();
-        console.log(item)
         var product_id = ($(this).siblings('.item-id').val());
         var user_id = ($('.user-id').val());
         var quantBox = $(this).siblings('.hb-item_quantity');
@@ -133,6 +136,9 @@ $(document).ready(function(){
         var totalItems = $('.total-items')
         var totalItemsVal = parseInt(totalItems.val());
         // var stock = $(this).siblings('.product-stock').val();
+        var productPrice = parseInt($(this).siblings('.product-price').val())
+        var totalItemPrice = $(this).siblings('.total-item-price');
+        var totalPriceDispay = $(this).parent().parent().siblings().children('.total-price-display')
 
         $.ajax({
             method: "post",
@@ -147,6 +153,9 @@ $(document).ready(function(){
 
                 totalItems.val(totalItemsVal - 1)
                 totalItems.attr('value', totalItemsVal - 1)
+
+                totalItemPrice.val(parseInt(totalItemPrice.val()) - productPrice);
+                totalPriceDispay.html(totalItemPrice.val());
             }
             else{
                 item.css("display", "none");

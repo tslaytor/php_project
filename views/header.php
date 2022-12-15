@@ -133,7 +133,8 @@
                                                 <div>
                                                     <span class="minustobasket">&minus;</span>
                                                     <input class="item-id" type="hidden" value="<?php echo $item['product_id']?>">
-                                                    
+                                                    <input class="product-price" type="hidden" value="<?php echo $product['price']?>">
+                                                    <input class="total-item-price" type="hidden" value="<?php echo $item['quantity'] * $product['price']?>">
                                                     <input class="product-stock" type="hidden" value="<?php echo $product['stock_level']?>">
                                                     <input class="hb-item_quantity" value="<?php echo $item['quantity']; ?>"></input>
                                                     <span class="plustobasket">&plus;</span>
@@ -142,7 +143,8 @@
                                             </div>
                                             <div>
                                                 <div>price</div>
-                                                <div>$<?php echo $item['quantity'] * $product['price']?></div>
+                                                
+                                                <div class="total-price-display"><?php echo $item['quantity'] * $product['price']?></div>
                                             </div>
                                         </div>
                                             
