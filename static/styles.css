@@ -254,6 +254,12 @@ div.sub-list.basket-list {
     }
 }
 
+.trash {
+    fill: salmon;
+}
+.trash-svg {
+    height: 15px;
+}
 
 .hidden {
     display: none;

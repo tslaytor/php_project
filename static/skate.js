@@ -147,7 +147,7 @@ $(document).ready(function(){
         })
         .done(function() {
             if(quant > 1){
-                var x = parseInt(quant) - 1
+                var x = quant - 1
                 quantBox.val(x);
                 quantBox.attr('value', x)
 
@@ -168,6 +168,39 @@ $(document).ready(function(){
             
         });
         return false
+    })
+
+
+    $('.trash-svg').click(function(){
+        var product_id = $(this).parents().siblings().children().children('.item-id').val();
+        var user_id = ($('.user-id').val());
+        var item = $(this).parents().parents('.hb-item');
+
+        var totalItems = $('.total-items')
+        var totalItemsVal = parseInt(totalItems.val());
+
+        var quant = $(this).parents().siblings().children().children('.hb-item_quantity').val();
+        $.ajax(
+        {
+            method: "post",
+            url: "../deletefrombasket.php",
+            data: { 'user_id': user_id, 'product_id': product_id }
+        })
+        .done(function(){
+            item.css('display', 'none');
+
+            
+            totalItems.val(totalItemsVal - quant)
+            totalItems.attr('value', totalItemsVal - quant)
+
+            console.log(totalItemsVal);
+            console.log(quant)
+
+            if(totalItemsVal - quant <= 0){
+                $('.basket-message').css('display', 'block');
+            }
+        }
+        )
     })
 
    

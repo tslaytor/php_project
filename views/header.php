@@ -146,6 +146,11 @@
                                                 
                                                 <div class="total-price-display"><?php echo $item['quantity'] * $product['price']?></div>
                                             </div>
+
+                                            <div class="trash">
+                                                <img class="trash-svg" src="../images/icons/trash/trash.svg">
+                                            </div>
+
                                         </div>
                                             
                                     <?php endforeach ?>
