@@ -69,13 +69,14 @@ $(document).ready(function(){
         $.each($('.product-form').serializeArray(), function(i, field) {
         values[field.name] = field.value;
         });
-
-        // if(values['quant_in_basket']){
-            if(parseInt(values['stock']) <= parseInt(values['quant_in_basket'])){
-                alert("We don't have enough in stock to add more to your basket")
-                return false
-            }
-        // }
+        if(values['user_id'] === 'guest'){
+            alert('You must be logged in to add to basket');
+            return false;
+        }
+        if(parseInt(values['stock']) <= parseInt(values['quant_in_basket'])){
+            alert("We don't have enough in stock to add more to your basket")
+            return false
+        }
        
         $.ajax({
             method: "post",
@@ -93,8 +94,12 @@ $(document).ready(function(){
     })
 
     $('.plustobasket').click(function(){
-        var product_id = ($(this).siblings('.item-id').val());
         var user_id = ($('.user-id').val());
+        if(user_id === 'guest'){
+            alert('You must be logged in to add to basket');
+            return false;
+        }
+        var product_id = ($(this).siblings('.item-id').val());
         var quantBox = $(this).siblings('.hb-item_quantity');
         var quant = parseInt(quantBox.val());
         var totalItems = $('.total-items')
@@ -168,9 +173,14 @@ $(document).ready(function(){
     })
 
     $('.minustobasket').click(function(){
+        var user_id = ($('.user-id').val());
+        if(user_id === 'guest'){
+            alert('You must be logged in to add to basket');
+            return false;
+        }
+
         var item = $(this).parent().parent().parent();
         var product_id = ($(this).siblings('.item-id').val());
-        var user_id = ($('.user-id').val());
         var quantBox = $(this).siblings('.hb-item_quantity');
         var quant = $(this).siblings('.hb-item_quantity').val();
         var totalItems = $('.total-items')

@@ -1,9 +1,6 @@
 <?php 
 include_once('dbconnection.php');
 
-var_dump($_POST);
-echo "pure hate/";
-
 $product_id = $_POST['product_id'];
 $user_id = $_POST['user_id'];
 
@@ -15,6 +12,7 @@ $statement->execute();
 $records = $statement->fetch(PDO::FETCH_ASSOC);
 
 var_dump($records);
+
 
 if(!$records){
     $statement = $pdo->prepare('INSERT INTO basket (user_id, product_id) values (:user_id, :product_id)');

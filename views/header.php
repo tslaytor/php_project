@@ -98,7 +98,8 @@
                         <img class="basket-image"  src="../images/icons/basket/pngaaa.com-460382.png"></img>
                         <span class="basket-count"></span>
                         <div class="sub-list basket-list">
-                            <?php if(array_key_exists('username', $_SESSION)) :?>
+                            <?php 
+                            if(array_key_exists('username', $_SESSION)) :?>
                                 <?php 
                                     $statement = $pdo->prepare('SELECT * FROM basket WHERE user_id = :user_id ');
                                     $statement->bindValue(':user_id', $_SESSION['user_id']);
@@ -131,8 +132,8 @@
                                                 <div>
                                                     <span class="minustobasket">&minus;</span>
                                                     <input class="item-id" type="hidden" value="<?php echo $item['product_id']?>">
-                                                    <input class="product-price" type="hidden" value="<?php echo $product['price']?>">
-                                                    <input class="total-item-price" type="hidden" value="<?php echo $item['quantity'] * $product['price']?>">
+                                                    <input class="product-price" type="hidden" value="<?php echo number_format($product['price'], 2, '.', ',')?>">
+                                                    <input class="total-item-price" type="hidden" value="<?php echo number_format($item['quantity'] * $product['price'], 2, '.', ',') ?>">
                                                     <input class="product-stock" type="hidden" value="<?php echo $product['stock_level']?>">
                                                     <input class="hb-item_quantity" value="<?php echo $item['quantity']; ?>"></input>
                                                     <span class="plustobasket">&plus;</span>
@@ -142,7 +143,7 @@
                                             <div>
                                                 <div>price</div>
                                                 
-                                                <div class="total-price-display">$ <?php echo $item['quantity'] * $product['price']?></div>
+                                                <div class="total-price-display">$ <?php echo number_format($item['quantity'] * $product['price'], 2, '.', ',') ?></div>
                                             </div>
 
                                             <div class="trash">
@@ -150,28 +151,32 @@
                                             </div>
 
                                         </div>
-                                            
+                                        <div>
+                                            <span>Basket total: </span>
+                                            <?php 
+                                            $total = 0;
+                                            foreach($items as $item) {
+                                                $statement = $pdo->prepare('SELECT * FROM products WHERE id = :product_id ');
+                                                    $statement->bindValue(':product_id', $item['product_id']);
+                                                    $statement->execute();
+                                                    $product = $statement->fetch(PDO::FETCH_ASSOC);
+                                                    $total += $item['quantity'] * $product['price'];
+                                            } 
+                                            ?>
+                                            <span class="total-cost">$ <?php echo number_format($total, 2, '.', ',')  ?></span>
+                                            <input type="hidden" class="total-cost_value" value="<?php echo $total?>">
+                                        </div>
+                                        <div>
+                                            <button>Checkout</button>
+                                        </div>
+                                                        
                                     <?php endforeach ?>
-
+                            <?php else :?>
+                                <div class="basket-message">Basket Empty</div>
                             <?php endif ?>
-                            <div>
-                                <span>Basket total: </span>
-                                <?php 
-                                $total = 0;
-                                foreach($items as $item) {
-                                    $statement = $pdo->prepare('SELECT * FROM products WHERE id = :product_id ');
-                                        $statement->bindValue(':product_id', $item['product_id']);
-                                        $statement->execute();
-                                        $product = $statement->fetch(PDO::FETCH_ASSOC);
-                                        $total += $item['quantity'] * $product['price'];
-                                }
-                                    
-                                            
-                                        ?>
-                                        
-                                <span class="total-cost">$ <?php echo $total ?></span>
-                                <input type="hidden" class="total-cost_value" value="<?php echo $total?>">
-                            </div>
+
+                            
+                            
                         </div>
                     </div>
 
