@@ -112,10 +112,7 @@ $(document).ready(function(){
         var totalItemPrice = $(this).siblings('.total-item-price');
         var totalPriceDispay = $(this).parent().parent().siblings().children('.total-price-display')
 
-        console.log(quant)
-        console.log(stock);
         if (quant >= stock){
-            console.log(`apparently ${quant} is bigger or eaqual to ${stock}`)
             alert("We don't have enough in stock to add more to your basket")
             return false
         }

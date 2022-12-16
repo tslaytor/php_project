@@ -27,7 +27,7 @@ $brands = $statement->fetchAll(PDO::FETCH_ASSOC);
                     <div class="products-item_brand">
                         <?php foreach($brands as $brand) :?>
                             <?php if($brand['id'] === $product['brand_id']){
-                                echo strtoupper($brand['brand']);
+                                echo strtoupper($brand['brand_name']);
                             }?>
                         <?php endforeach ?>
                     </div>

@@ -30,7 +30,7 @@ if(array_key_exists('user_id', $_SESSION)){
     </div>
     <div class="product_brand">
         <img class="product_brand-logo"src="<?php echo '../'.$brand['logo'] ?>">
-        <div class="product_brand-text"><?php echo strtoupper($brand['brand']) ?></div>
+        <div class="product_brand-text"><?php echo strtoupper($brand['brand_name']) ?></div>
     </div>
     <div class="product_text">  <?php echo $product['title'] ?></div>
     <div class="product_price"><?php echo '$'.$product['price'] ?></div>
@@ -50,10 +50,6 @@ if(array_key_exists('user_id', $_SESSION)){
         <input type="button" value="Add to Basket" class="product_add-to-basket <?php if($product['stock_level'] <= 0){echo 'inactive';} ?>"></button>
         
     </form>
-    <form>
-        <button class="product_add-to-wishlist">Add to wishlist</button>
-    </form>
-    
-    <div class="product_description"><?php echo $product['description'] ?></div>
+
 </div>
 

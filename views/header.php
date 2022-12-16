@@ -2,10 +2,6 @@
     include_once('../dbconnection.php');
     session_start();
     
-    // set default session values
-    // $_SESSION['user_id'] = NULL;
-    // $_SESSION['username'] = "Guest";
-    
     // reassign session values if login form submitted
     if($_SERVER['REQUEST_METHOD'] === "POST" && array_key_exists('username', $_POST)){
         if(array_key_exists('logout', $_POST)){
@@ -71,7 +67,7 @@
 
                             <div class="nav-item">
                                 <span class="plus-minus">&plus;</span>
-                                <span><?php echo ucwords($category['category'])?></span>
+                                <span><?php echo ucwords($category['category_title'])?></span>
                                 <ul class="sub-list">
                                 
                                     <?php foreach($sub_items as $sub_item): ?>
@@ -143,7 +139,7 @@
                                             <div>
                                                 <div>price</div>
                                                 
-                                                <div class="total-price-display">$ <?php echo number_format($item['quantity'] * $product['price'], 2, '.', ',') ?></div>
+                                                <span>$</span>  <span class="total-price-display"> <?php echo number_format($item['quantity'] * $product['price'], 2, '.', ',') ?></span>
                                             </div>
 
                                             <div class="trash">
@@ -166,7 +162,7 @@
                                                     $total += $item['quantity'] * $product['price'];
                                             } 
                                             ?>
-                                            <span class="total-cost">$ <?php echo number_format($total, 2, '.', ',')  ?></span>
+                                            <span>$</span> <span class="total-cost"> <?php echo number_format($total, 2, '.', ',')  ?></span>
                                             <input type="hidden" class="total-cost_value" value="<?php echo number_format($total, 2, '.', ',') ?>">
                                         </div>
                                         <div>
