@@ -151,7 +151,10 @@
                                             </div>
 
                                         </div>
-                                        <div>
+                                      
+                                                        
+                                    <?php endforeach ?>
+                                    <div>
                                             <span>Basket total: </span>
                                             <?php 
                                             $total = 0;
@@ -164,13 +167,11 @@
                                             } 
                                             ?>
                                             <span class="total-cost">$ <?php echo number_format($total, 2, '.', ',')  ?></span>
-                                            <input type="hidden" class="total-cost_value" value="<?php echo $total?>">
+                                            <input type="hidden" class="total-cost_value" value="<?php echo number_format($total, 2, '.', ',') ?>">
                                         </div>
                                         <div>
-                                            <button>Checkout</button>
+                                            <a href="basket_summary.php"><button>Checkout</button></a>
                                         </div>
-                                                        
-                                    <?php endforeach ?>
                             <?php else :?>
                                 <div class="basket-message">Basket Empty</div>
                             <?php endif ?>

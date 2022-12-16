@@ -93,6 +93,11 @@ body {
     width: 36px;
 }
 
+.basket.summary {
+    width: 80%;
+    margin: auto;
+}
+
 .basket-image,
 .profile-image,
 .navbar-icons {
@@ -197,11 +202,12 @@ div.sub-list.basket-list {
     top: 42px;
 }
 
-.basket-list > .hb-item{
+.hb-item{
     display: flex;
     align-items: center;
     margin: 12px;
     background-color: white;
+    justify-content: space-around;
 }
 
 .basket-list {

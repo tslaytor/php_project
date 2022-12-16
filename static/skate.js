@@ -108,12 +108,7 @@ $(document).ready(function(){
         var stock = parseInt($(this).siblings('.product-stock').val());
 
         var productPrice = Math.round(parseFloat($(this).siblings('.product-price').val()) * 100) / 100
-        // var totalItemPrice = Math.round(parseFloat($(this).siblings('.total-item-price').val()) * 100) / 100
-        // console.log(`productPrice: ${productPrice}`)
-        // console.log(`totalItemPrice: ${totalItemPrice}`)
-        // ;
-        // var totalPriceDispay = $(this).parent().parent().siblings().children('.total-price-display')
-
+       
         var totalItemPrice = $(this).siblings('.total-item-price');
         var totalPriceDispay = $(this).parent().parent().siblings().children('.total-price-display')
 
@@ -132,39 +127,23 @@ $(document).ready(function(){
         })
         .done(function(e) {
             var x = quant + 1;
-            // quantBox.val(x);
-            // quantBox.attr('value', x);
-
-            // totalItems.val(totalItemsVal + 1) ********** HERE DOSE NOTHING
-            // totalItems.attr('value', totalItemsVal + 1)
 
             var totalCostDisplay = $(".total-cost");
             var totalCostValue = $('.total-cost_value');
-            var newCost =   Math.round((parseFloat(totalCostValue.val()) + productPrice) * 100) / 100;
+            var newCost =   (Math.round((parseFloat(totalCostValue.val()) + productPrice) * 100) / 100).toFixed(2);
             totalCostDisplay.html(newCost);
             totalCostValue.attr('value', newCost);
 
-            var x = quant + 1
+            var x = quant + 1.0
                 quantBox.val(x);
                 quantBox.attr('value', x)
 
-                totalItems.val(totalItemsVal + 1)
-                totalItems.attr('value', totalItemsVal + 1)
+                totalItems.val(totalItemsVal + 1.0)
+                totalItems.attr('value', totalItemsVal + 1.0)
 
                 totalItemPrice.val((Math.round((parseFloat(totalItemPrice.val()) + productPrice) * 100) / 100).toFixed(2)) ;
                 totalPriceDispay.html(totalItemPrice.val());
 
-
-
-            // totalItemPrice += productPrice;
-            // console.log(`totalItemPrice: ${totalItemPrice}`)
-            // totalPriceDispay.html(totalItemPrice);
-
-            // var totalCostDisplay = $(".total-cost");
-            // var totalCostValue = $('.total-cost_value');
-            // var newCost =  Math.round((parseFloat(totalCostValue.val()) + productPrice) * 100) / 100;
-            // totalCostDisplay.html(newCost);
-            // totalCostValue.attr('value', newCost);
 
 
             
@@ -199,7 +178,7 @@ $(document).ready(function(){
 
             var totalCostDisplay = $(".total-cost");
             var totalCostValue = $('.total-cost_value');
-            var newCost =   Math.round((parseFloat(totalCostValue.val()) - productPrice) * 100) / 100;
+            var newCost =   (Math.round((parseFloat(totalCostValue.val()) - productPrice) * 100) / 100).toFixed(2);
             totalCostDisplay.html(newCost);
             totalCostValue.attr('value', newCost);
 
@@ -237,6 +216,8 @@ $(document).ready(function(){
         var totalItems = $('.total-items')
         var totalItemsVal = parseInt(totalItems.val());
 
+        var totalItemPrice = $(this).parents().siblings().children().children('.total-item-price');
+
         var quant = $(this).parents().siblings().children().children('.hb-item_quantity').val();
         $.ajax(
         {
@@ -251,8 +232,14 @@ $(document).ready(function(){
             totalItems.val(totalItemsVal - quant)
             totalItems.attr('value', totalItemsVal - quant)
 
-            console.log(totalItemsVal);
-            console.log(quant)
+            // (***********) here
+
+            var totalCostDisplay = $(".total-cost");
+            var totalCostValue = $('.total-cost_value');
+            var newCost =   Math.round((parseFloat(totalCostValue.val()) - totalItemPrice.val()) * 100) / 100;
+            totalCostDisplay.html(newCost);
+            totalCostValue.attr('value', newCost);
+
 
             if(totalItemsVal - quant <= 0){
                 $('.basket-message').css('display', 'block');
@@ -260,6 +247,21 @@ $(document).ready(function(){
         }
         )
     })
+
+    $('.confirm-purchase').click(function(){
+        var user_id = ($('.user-id').val());
+        console.log(user_id);
+        $.ajax({
+            method: "post",
+            url: "../confirm_purchase.php",
+            data: { 'user_id': user_id}
+        })
+        .done(function(){
+            window.location.replace("../views/order_history.php");
+            alert('Purchase Successful');
+        });
+    })
+    
 
    
 });
