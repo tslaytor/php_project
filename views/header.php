@@ -2,8 +2,9 @@
     include_once('../dbconnection.php');
     session_start();
     
+    var_dump($_POST);
     // reassign session values if login form submitted
-    if($_SERVER['REQUEST_METHOD'] === "POST" && array_key_exists('username', $_POST)){
+    if($_SERVER['REQUEST_METHOD'] === "POST"){
         if(array_key_exists('logout', $_POST)){
             // var_dump($_POST['logout']);
             unset($_SESSION['user_id']);
@@ -206,6 +207,7 @@
                                     <a>Register</a>
                                 </form>
                             <?php else : ?>
+                                <a href="order_history.php"><div>Order History</div></a>
                                 <form method="post">
                                     <input name="logout" type="hidden">
                                     <input type="submit" value="Log Out">

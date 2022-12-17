@@ -73,22 +73,3 @@ foreach($ordersByDate as $orders): ?>
 <?php endforeach ?>
    
 
- <?php foreach($ordersByDate as $orders){
-     echo "<pre>";
-     var_dump($orders);
-     echo "</pre>";
- }
-?>
-
-
-<div class="past-order" style="border: solid black 2px; margin: 1rem;">
-        <input type="hidden" class="date" value="<?php echo $date ?>">
-        <div><?php echo $date ?></div>
-        <input type="hidden" class="quantity" value="<?php echo $quantity ?>">
-        <div><?php echo $quantity ?></div>
-        <input type="hidden" class="price" value="<?php echo $price ?>">
-        <div>
-            <span>$ </span><span><?php echo $price ?></span>
-        </div> 
-
-    </div>
