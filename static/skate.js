@@ -110,7 +110,8 @@ $(document).ready(function(){
         var productPrice = Math.round(parseFloat($(this).siblings('.product-price').val()) * 100) / 100
        
         var totalItemPrice = $(this).siblings('.total-item-price');
-        var totalPriceDispay = $(this).parent().parent().siblings().children('.total-price-display')
+        var totalPriceDisplay = $(this).parent().parent().siblings().children('.total-price-display')
+        console.log
 
         if (quant >= stock){
             alert("We don't have enough in stock to add more to your basket")
@@ -132,18 +133,21 @@ $(document).ready(function(){
             totalCostValue.attr('value', newCost);
 
             var x = quant + 1.0
-                quantBox.val(x);
-                quantBox.attr('value', x)
+            quantBox.val(x);
+            quantBox.attr('value', x)
 
-                totalItems.val(totalItemsVal + 1.0)
-                totalItems.attr('value', totalItemsVal + 1.0)
+            totalItems.val(totalItemsVal + 1.0)
+            totalItems.attr('value', totalItemsVal + 1.0)
 
-                totalItemPrice.val((Math.round((parseFloat(totalItemPrice.val()) + productPrice) * 100) / 100).toFixed(2)) ;
-                totalPriceDispay.html(totalItemPrice.val());
-
-
-
+            totalItemPrice.val((Math.round((parseFloat(totalItemPrice.val()) + productPrice) * 100) / 100).toFixed(2)) ;
+            totalPriceDisplay.html(totalItemPrice.val());
             
+            var basketCount = $('.basket-count');
+            var basketCountValue = $('.basket-count_value')
+            var newBasketCount = parseInt(basketCountValue.val()) + 1
+            basketCount.html(newBasketCount);
+            basketCountValue.val(newBasketCount);
+                
         });
         return false
     })
@@ -164,7 +168,7 @@ $(document).ready(function(){
         // var stock = $(this).siblings('.product-stock').val();
         var productPrice = Math.round((parseFloat($(this).siblings('.product-price').val())) * 100) / 100
         var totalItemPrice = $(this).siblings('.total-item-price');
-        var totalPriceDispay = $(this).parent().parent().siblings().children('.total-price-display')
+        var totalPriceDisplay = $(this).parent().parent().siblings().children('.total-price-display')
 
         $.ajax({
             method: "post",
@@ -188,7 +192,7 @@ $(document).ready(function(){
                 totalItems.attr('value', totalItemsVal - 1)
 
                 totalItemPrice.val((Math.round((parseFloat(totalItemPrice.val()) - productPrice) * 100) / 100).toFixed(2)) ;
-                totalPriceDispay.html(totalItemPrice.val());
+                totalPriceDisplay.html(totalItemPrice.val());
 
             }
             else{
@@ -199,6 +203,14 @@ $(document).ready(function(){
                     $('.basket-message').css('display', 'block');
                 }
             }
+            var basketCount = $('.basket-count');
+            var basketCountValue = $('.basket-count_value')
+            var newBasketCount = parseInt(basketCountValue.val()) - 1
+            basketCount.html(newBasketCount);
+            basketCountValue.val(newBasketCount);
+            if(newBasketCount <= 0){
+                basketCount.css('display', 'none');
+            }
             
         });
         return false
@@ -208,7 +220,7 @@ $(document).ready(function(){
     $('.trash-svg').click(function(){
         var product_id = $(this).parents().siblings().children().children('.item-id').val();
         var user_id = ($('.user-id').val());
-        var item = $(this).parents().parents('.hb-item');
+        var item = $(this).parents().parents('.delete-item');
 
         var totalItems = $('.total-items')
         var totalItemsVal = parseInt(totalItems.val());
@@ -228,18 +240,23 @@ $(document).ready(function(){
             
             totalItems.val(totalItemsVal - quant)
             totalItems.attr('value', totalItemsVal - quant)
-
-            // (***********) here
-
             var totalCostDisplay = $(".total-cost");
             var totalCostValue = $('.total-cost_value');
             var newCost =   Math.round((parseFloat(totalCostValue.val()) - totalItemPrice.val()) * 100) / 100;
             totalCostDisplay.html(newCost);
             totalCostValue.attr('value', newCost);
 
-
             if(totalItemsVal - quant <= 0){
                 $('.basket-message').css('display', 'block');
+            }
+
+            var basketCount = $('.basket-count');
+            var basketCountValue = $('.basket-count_value')
+            var newBasketCount = parseInt(basketCountValue.val()) - quant;
+            basketCount.html(newBasketCount);
+            basketCountValue.val(newBasketCount);
+            if(newBasketCount <= 0){
+                basketCount.css('display', 'none');
             }
         }
         )
@@ -251,7 +268,6 @@ $(document).ready(function(){
         $.ajax({
             method: "post",
             url: "../confirm_purchase.php",
-            data: { 'user_id': user_id}
         })
         .done(function(){
             window.location.replace("../views/order_history.php");
@@ -291,4 +307,3 @@ function subListToggler(listIsUp, group){
     }
     return listIsUp;
 }
-

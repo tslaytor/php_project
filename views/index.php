@@ -1,15 +1,13 @@
 <?php include_once('header.php'); 
-
-    
-
-    
     $statement = $pdo->prepare("SELECT * FROM brand");
     $statement->execute();
     $brands = $statement->fetchAll(PDO::FETCH_ASSOC);
-    // var_export($brands);
 ?>
+<h1>Skate your way</h1>
+<div class="splash">
+    <img src="../images/rodneyhome/rodney-mullen-skateboarding.jpeg">
+</div>
 
-<h2 style="margin-left: 32px;">Shop by brand</h2>
 <div class="brand-homepage">
     <?php foreach($brands as $i => $brand): ?>
         <div class="brand-homepage_item">

@@ -1,10 +1,10 @@
 <?php 
 include_once('dbconnection.php');
 
-$user_id = $_POST['user_id'];
+
 
 $statement = $pdo->prepare('SELECT * FROM basket WHERE user_id = :user_id');
-$statement->bindValue(':user_id', $user_id);
+$statement->bindValue(':user_id', $_SESSION['user_id']);
 $statement->execute();
 $items = $statement->fetchAll(PDO::FETCH_ASSOC);
 var_dump($items);
@@ -18,7 +18,7 @@ if($items){
         $statement->execute();
     }
     $statement = $pdo->prepare('DELETE FROM basket WHERE user_id = :user_id');
-    $statement->bindValue(':user_id', $user_id);
+    $statement->bindValue(':user_id', $_SESSION['user_id']);
     $statement->execute();
 }
 

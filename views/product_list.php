@@ -12,10 +12,14 @@ $statement = $pdo->prepare("SELECT * FROM brand");
 $statement->execute();
 $brands = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+$statement = $pdo->prepare("SELECT * FROM subcategory WHERE $id = :id");
+$statement->bindValue(':id', $id);
+$statement->execute();
+$subcategory = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
-
-
+<a href="index.php" class="back-button"><img src="../images/icons/back-button/back-button.png"></a>
+<h1><?php echo ucwords($subcategory['subcategory_title']) ?></h1>
 <div class="products">
     <?php foreach($products as $product):?>
         <a class="products-item" href="product.php?product_id=<?php echo $product['id']?>">

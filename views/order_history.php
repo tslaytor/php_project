@@ -42,34 +42,44 @@
 
 <?php $ordersByDate[] = $temp_array; ?>
 
-<?php
-foreach($ordersByDate as $orders): ?>
-   <div class="past-order" style="border: solid black 2px; margin: 1rem; display:flex; justify-content: space-evenly">
-        <?php 
-        $total_spend = 0;
-        $quantity = 0;
-        foreach($orders as $order){
-            $statement = $pdo->prepare("SELECT * FROM products WHERE id = :product_id");
-            $statement->bindValue(':product_id', $order['product_id']);
-            $statement->execute();
-            $product = $statement->fetch(PDO::FETCH_ASSOC);
 
-            $total_spend += $product['price'];
-            $quantity += $order['quantity'];
-        }
-        $date = $orders[0]['date'];
-
-         ?>
-        <input type="hidden" class="date" value="<?php echo $date ?>">
-        <div><?php echo $date ?></div>
-        <input type="hidden" class="quantity" value="<?php echo $quantity ?>">
-        <div><?php echo $quantity ?></div>
-        <input type="hidden" class="total-spend" value="<?php echo $total_spend ?>">
-        <div>
-            <span>$ </span><span><?php echo $total_spend ?></span>
-        </div> 
-
-    </div>
-<?php endforeach ?>
    
 
+
+
+
+<div class="table-wrap">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="table-heading">Time</th>
+                <th class="table-heading">Items Purchased</th>
+                <th class="table-heading">Total Order Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($ordersByDate as $orders): ?> 
+            <?php 
+            $total_spend = 0;
+            $quantity = 0;
+            foreach($orders as $order){
+                $statement = $pdo->prepare("SELECT * FROM products WHERE id = :product_id");
+                $statement->bindValue(':product_id', $order['product_id']);
+                $statement->execute();
+                $product = $statement->fetch(PDO::FETCH_ASSOC);
+
+                
+                $quantity += $order['quantity'];
+                $total_spend += $product['price'] * $order['quantity'];
+            }
+
+            ?>
+            <tr class="table-row" onclick="window.location='past_order.php?date=<?php echo $orders[0]['date'] ?>';">
+                    <td class="cell"><?php echo $orders[0]['date'] ?></td>
+                    <td class="cell"><span><?php echo $quantity?></span></td>
+                    <td class="cell"><span>$ </span><span><?php echo number_format($total_spend, 2, ".", ",")?></span></td>
+            </tr>
+        <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
