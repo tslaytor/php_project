@@ -44,8 +44,8 @@ if(array_key_exists('username', $_SESSION)) :?>
                         $product = $statement->fetch(PDO::FETCH_ASSOC);
                     ?> 
                     <tr class="delete-item">
-                        <td class="cell"><?php echo $product['title'] ;?></td>
-                        <td class="cell"><img class="hb-item_image" src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;"></td>
+                        <td class="cell cell-title"><?php echo $product['title'] ;?></td>
+                        <td class="cell cell-image"><img class="hb-item_image" src="<?php echo '../'. $product['image']?>"></td>
                         <td class="cell"><?php echo number_format($product['price'], 2, ".", ",")?></td>
                         <td class="cell">
                             <div  class="hb-item_quantity-wrap flex-row">

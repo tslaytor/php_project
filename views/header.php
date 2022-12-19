@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../static/styles.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="../static/skate.js"></script>
+    </head>
+
+
 <?php 
     include_once('../dbconnection.php');
     session_start();
@@ -14,17 +27,23 @@
             $statement->bindValue(':username', $_POST['username']);
             $statement->execute();
             $user = $statement->fetch(PDO::FETCH_ASSOC);
-            if($user){
+            if($user) {
                 if ($_POST['password'] === $user['password']){
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['username'] = $user['username'];
                 }
                 else {
-                    echo 'error';
+                    echo '<script type="text/javascript">',
+                    'userNotExist();',
+                    '</script>';
                 }
             }
+            else {
+                echo '<script type="text/javascript">',
+                'userNotExist();',
+                '</script>';
+            }
         }
-        
     }
 
     
@@ -32,17 +51,7 @@
 
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../static/styles.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="../static/skate.js"></script>
-    </head>
+
     <body>
         <nav class="navigation-bar">
             <a class="nav-logo" href="index.php">Skate Shop</a>
@@ -108,7 +117,8 @@
 
                                             
                     
-                    <div class="sub-list basket-list">
+                    <div class="sub-list <?php echo array_key_exists('username', $_SESSION) ? 'basket-list' : 'basket-list-empty'; 
+                    echo !$items ? ' basket-list-empty' : ' ' ?>">
                             
                     <?php if(array_key_exists('username', $_SESSION)) :?>     
                         <input type="hidden" class="user-id" value="<?php echo $_SESSION['user_id']?>">      
@@ -125,7 +135,7 @@
                             ?>
                             <div class="hb-item delete-item">
                                 <div class="hb-item_title"><?php echo $product['title'] ;?></div>
-                                <img class="hb-item_image" src="<?php echo '../'. $product['image']?>" style="width: 40px; height: auto;">
+                                <img class="hb-item_image" src="<?php echo '../'. $product['image']?>">
                                 <div  class="hb-item_quantity-wrap">
                                     Quantity
                                     <div>
@@ -153,7 +163,7 @@
                             
                                             
                         <?php endforeach ?>
-                        <div>
+                        <div style="text-align: end; margin-right: 12px">
                             <span>Basket total: </span>
                             <?php 
                             $total = 0;
@@ -168,12 +178,12 @@
                             <span>$</span> <span class="total-cost"> <?php echo number_format($total, 2, '.', ',')  ?></span>
                             <input type="hidden" class="total-cost_value" value="<?php echo number_format($total, 2, '.', ',') ?>">
                         </div>
-                        <div>
+                        <div style="text-align: end; margin-right: 12px">
                             <a href="basket_summary.php"><button>Checkout</button></a>
                         </div>
-                        <?php else :?>
-                            <div class="basket-message">Basket Empty</div>
-                        <?php endif ?>                            
+                    <?php else :?>
+                        <div class="basket-message">Basket Empty</div>
+                    <?php endif ?>                            
                 </div>
             </div>
 
@@ -206,11 +216,13 @@
                                     <a>Register</a>
                                 </form>
                             <?php else : ?>
-                                <a href="order_history.php"><div>Order History</div></a>
-                                <form method="post">
-                                    <input name="logout" type="hidden">
-                                    <input type="submit" value="Log Out">
-                                </form>
+                                <div class="inner-profile-dropdown">
+                                    <a href="order_history.php"><div>Order History</div></a>
+                                    <form method="post">
+                                        <input name="logout" type="hidden">
+                                        <input type="submit" value="Log Out">
+                                    </form>
+                                </div>
                             <?php endif ?>
                         </div>
                     </div>

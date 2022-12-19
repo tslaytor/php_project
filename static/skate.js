@@ -307,3 +307,7 @@ function subListToggler(listIsUp, group){
     }
     return listIsUp;
 }
+
+function userNotExist(){
+    alert("Login failed - check your username and password")
+}

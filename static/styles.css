@@ -7,6 +7,7 @@ body {
     padding: 2rem;
     margin: 0;
     margin-top: 56px;
+    min-width: 300px;
 
 }
 
@@ -194,15 +195,39 @@ div.sub-list.profile-dropdown {
     left: -150px;
     top: 50px;
     width: fit-content;
+    min-width: 220px;
     height: 200px;
+}
+
+.inner-profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
 }
 
 div.sub-list.basket-list {
     display: none;
     flex-direction: column;
-    width: 800px;
+    width: 80vw;
+    min-width: 600px;
+    max-width: 800px;
     left: -700px;
     top: 42px;
+    
+}
+
+div.sub-list.basket-list-empty {
+    display: none;
+    flex-direction: column;
+    left: -350px;
+    top: 42px;
+    height: 100px;
+    width: 400px;
+    padding: 30px;
+    min-width: unset;
+    max-width: none;
 }
 
 .hb-item{
@@ -457,6 +482,15 @@ div.sub-list.basket-list {
     border-bottom: black solid 2px;
     white-space: nowrap;
 }
+
+.cell.cell-title {
+    white-space: normal;
+}
+
+.cell.cell-image {
+    padding: 0;
+}
+
 .past-order_title {
     max-width: 100px;
     border-right: none;
@@ -488,6 +522,9 @@ div.sub-list.basket-list {
     margin: auto;
 }
 
+.hb-item_image {
+    width: 80px;
+}
 .basket-message {
     text-align: center;
     font-size: 48px;
@@ -511,10 +548,12 @@ div.sub-list.basket-list {
 .splash,
 .brand-homepage {
     min-width: 315px;
+    max-width: 1800px;
+    margin: auto;
 }
 .splash > img {
     width: 100%;
-
+    
 }
 
 
@@ -542,7 +581,7 @@ div.sub-list.basket-list {
     }
 }
 
-@media(min-width: 650px){
+@media(min-width: 760px){
     .nav-toggle-button{
         display: none;
     }
