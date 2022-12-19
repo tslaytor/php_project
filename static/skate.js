@@ -270,8 +270,9 @@ $(document).ready(function(){
             url: "../confirm_purchase.php",
         })
         .done(function(){
-            window.location.replace("../views/order_history.php");
             alert('Purchase Successful');
+            window.location.replace("../views/order_history.php");
+            
         });
     })
     
