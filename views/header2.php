@@ -14,42 +14,7 @@
 <?php 
     include_once('../dbconnection.php');
     session_start();
-    
-    // reassign session values if login form submitted
-    if($_SERVER['REQUEST_METHOD'] === "POST"){
-        if(array_key_exists('logout', $_POST)){
-            // var_dump($_POST['logout']);
-            unset($_SESSION['user_id']);
-            unset($_SESSION['username']);
-        }
-        else{
-            var_dump($_POST);
-            $statement = $pdo->prepare("SELECT * from user where username = :username");
-            $statement->bindValue(':username', $_POST['username']);
-            $statement->execute();
-            $user = $statement->fetch(PDO::FETCH_ASSOC);
-            if($user) {
-                if ($_POST['password'] === $user['password']){
-                    $_SESSION['user_id'] = $user['id'];
-                    $_SESSION['username'] = $user['username'];
-                }
-                else {
-                    echo '<script type="text/javascript">',
-                    'alert("Login failed - check your password");',
-                    '</script>';
-                }
-            }
-            else {
-                echo '<script type="text/javascript">',
-                'alert("Login failed - for a reason");',
-                '</script>';
-            }
-        }
-    }
-
-    
      
-
 ?>
 
 
@@ -95,7 +60,7 @@
 
                 
 
-            <div class="navbar-icons">
+                <div class="navbar-icons">
                    
                 
                 
@@ -234,5 +199,3 @@
                     
             </div>
         </nav>
-
-        <?php var_dump($_SESSION);

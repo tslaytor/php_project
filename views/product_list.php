@@ -1,7 +1,6 @@
 <?php include_once('header.php'); 
 
 $id = $_GET["subcategory"];
-// $subnav_item = $_GET["subnav_item"];
 
 $statement = $pdo->prepare("SELECT * FROM products WHERE subcategory_id = :id");
 $statement->bindValue(':id', $id);

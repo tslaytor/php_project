@@ -11,6 +11,20 @@ body {
 
 }
 
+.register-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+    height: 600px;
+    justify-content: space-evenly;
+}
+
+.register-form > div {
+    display: flex;
+    flex-direction: column;
+}
+
 .navigation-bar {
     border-bottom: solid white 2px;
     /* padding: 12px; */

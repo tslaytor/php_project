@@ -25,7 +25,6 @@ $statement = $pdo->prepare("SELECT * FROM subcategory WHERE id = :id");
 $statement->bindValue(':id', $product['subcategory_id']);
 $statement->execute();
 $subcategory = $statement->fetch(PDO::FETCH_ASSOC);
-// var_dump($subcategory)
 
 ?>
 <a href="product_list.php?subcategory=<?php echo $subcategory['id'] ?>" class="back-button"><img src="../images/icons/back-button/back-button.png"></a>
