@@ -599,12 +599,17 @@ div.sub-list.basket-list-empty {
         display: none;
     }
 
+    .sub-list {
+        right: 0;
+        top: 23px;
+    }
+
     .inner-nav-container{
         justify-content: space-between;
     }
 
     .nav-list {
-        display: flex;
+        display: flex !important;
         flex-direction: row;        
         z-index: 1;
         width: 100%;
