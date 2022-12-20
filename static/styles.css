@@ -16,7 +16,7 @@ body {
     flex-direction: column;
     max-width: 500px;
     margin: auto;
-    height: 600px;
+    height: 300px;
     justify-content: space-evenly;
 }
 
@@ -149,7 +149,7 @@ body {
     background-color: rgb(206, 206, 206);
     position: absolute;
     top: 58px;
-    right: 130px;
+    right: 10px;
     display: none;
     min-width: 175px;
 }
@@ -225,9 +225,9 @@ div.sub-list.basket-list {
     display: none;
     flex-direction: column;
     width: 80vw;
-    min-width: 600px;
+    /* min-width: 600px; */
     max-width: 800px;
-    left: -700px;
+    right: -70px;
     top: 42px;
     
 }
@@ -307,7 +307,6 @@ div.sub-list.basket-list-empty {
 
 .brand-homepage_logo {
     width: 100%;
-    min-width: 136px;
     max-width: 170px;
 }
 
@@ -619,10 +618,7 @@ div.sub-list.basket-list-empty {
         justify-content: center;
         margin: 0 6px;
     }
-    .sub-list{
-        left: 0;
-        top: 24px;
-    }
+ 
 
     .outer-product-container {
         flex-direction: row;

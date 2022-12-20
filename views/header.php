@@ -23,7 +23,6 @@
             unset($_SESSION['username']);
         }
         else{
-            var_dump($_POST);
             $statement = $pdo->prepare("SELECT * from user where username = :username");
             $statement->bindValue(':username', $_POST['username']);
             $statement->execute();
@@ -57,48 +56,39 @@
         <nav class="navigation-bar">
             <a class="nav-logo" href="index.php">Skate Shop</a>
             <div class="inner-nav-container">
-                <!-- <div> -->
-                    <button class="nav-toggle-button">
-                        <span class="toggle-span"></span>
-                        <span class="toggle-span"></span>
-                        <span class="toggle-span"></span>
-                    </button>      
-                    <div class="nav-list">
-                        <?php 
-                            $statement = $pdo->prepare("SELECT * FROM category");
-                            $statement->execute();
-                            $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+                <button class="nav-toggle-button">
+                    <span class="toggle-span"></span>
+                    <span class="toggle-span"></span>
+                    <span class="toggle-span"></span>
+                </button>      
+                <div class="nav-list">
+                    <?php 
+                        $statement = $pdo->prepare("SELECT * FROM category");
+                        $statement->execute();
+                        $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                            $statement = $pdo->prepare("SELECT * FROM subcategory");
-                            $statement->execute();
-                            $sub_items = $statement->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
-                        <?php foreach ($categories as $key =>$category):?>
+                        $statement = $pdo->prepare("SELECT * FROM subcategory");
+                        $statement->execute();
+                        $sub_items = $statement->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+                    <?php foreach ($categories as $key =>$category):?>
 
-                            <div class="nav-item">
-                                <span class="plus-minus">&plus;</span>
-                                <span><?php echo ucwords($category['category_title'])?></span>
-                                <ul class="sub-list">
-                                    <?php foreach($sub_items as $sub_item): ?>
-                                        <?php if($sub_item["category_id"] === $category["id"]): ?>
-                                            <li class="sub-list_item">
-                                                <a href="product_list.php?subcategory=<?php echo $sub_item["id"]?>" class="sub-list_title"><?php echo ucwords($sub_item["subcategory_title"]) ?></a>
-                                            </li>
-                                        <?php endif ?>
-                                    <?php endforeach ?>
-                                </ul>
-                                        </div>
-                        <?php endforeach ?>    
-                    <!-- </div> -->
+                        <div class="nav-item">
+                            <span class="plus-minus">&plus;</span>
+                            <span><?php echo ucwords($category['category_title'])?></span>
+                            <ul class="sub-list">
+                                <?php foreach($sub_items as $sub_item): ?>
+                                    <?php if($sub_item["category_id"] === $category["id"]): ?>
+                                        <li class="sub-list_item">
+                                            <a href="product_list.php?subcategory=<?php echo $sub_item["id"]?>" class="sub-list_title"><?php echo ucwords($sub_item["subcategory_title"]) ?></a>
+                                        </li>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </ul>
+                                    </div>
+                    <?php endforeach ?>    
                 </div>
-                
-
-                
-
             <div class="navbar-icons">
-                   
-                
-                
                 <div class="basket">
                     <img class="basket-image"  src="../images/icons/basket/pngaaa.com-460382.png"></img>
                     <?php if(array_key_exists('username', $_SESSION)) :?>
@@ -114,17 +104,14 @@
                         } ?>
                         <input type="hidden" class="basket-count_value" value="<?php echo $total ?>">
                         <span class="basket-count" <?php echo $total <= 0 ? "style='display:none'" : "" ?>><?php echo $total ?></span>
-                    <?php endif ?>
-
-                                            
+                    <?php endif ?>                 
                     
                     <div class="sub-list <?php echo array_key_exists('username', $_SESSION) ? 'basket-list' : 'basket-list-empty'; 
                     echo !$items ? ' basket-list-empty' : ' ' ?>">
                             
                     <?php if(array_key_exists('username', $_SESSION)) :?>     
                         <input type="hidden" class="user-id" value="<?php echo $_SESSION['user_id']?>">      
-                        <div class= <?php  echo !$items ? "basket-message" : "basket-message hidden" ?>>Basket empty</div>
-                                
+                        <div class= <?php  echo !$items ? "basket-message" : "basket-message hidden" ?>>Basket empty</div> 
                                 
                         <input type="hidden" class="total-items" value="<?php echo $total;?>">
                         <?php foreach($items as $item) :?>
@@ -139,7 +126,7 @@
                                 <img class="hb-item_image" src="<?php echo '../'. $product['image']?>">
                                 <div  class="hb-item_quantity-wrap">
                                     Quantity
-                                    <div>
+                                    <div style="min-width: 71px;">
                                         <span class="minustobasket">&minus;</span>
                                         <input class="item-id" type="hidden" value="<?php echo $item['product_id']?>">
                                         <input class="product-price" type="hidden" value="<?php echo number_format($product['price'], 2, '.', ',')?>">
@@ -150,19 +137,14 @@
                                     </div>
                                     
                                 </div>
-                                <div>
-                                    <div>price</div>
-                                    
+                                <div style="min-width: 50px;">
+                                    <div>price</div> 
                                     <span>$</span>  <span class="total-price-display"> <?php echo number_format($item['quantity'] * $product['price'], 2, '.', ',') ?></span>
                                 </div>
-
                                 <div class="trash">
                                     <img class="trash-svg" src="../images/icons/trash/trash.svg">
                                 </div>
-
-                            </div>
-                            
-                                            
+                            </div>         
                         <?php endforeach ?>
                         <div style="text-align: end; margin-right: 12px">
                             <span>Basket total: </span>
@@ -187,9 +169,6 @@
                     <?php endif ?>                            
                 </div>
             </div>
-
-
-
                     <div class="profile-wrapper">
                         <div class="profile">
                             <img class="profile-image" src="../images/icons/profile/pngaaa.com-6282973.png"></img>
@@ -229,10 +208,5 @@
                     </div>
                    
                 </div>
-               
-                
-                    
             </div>
         </nav>
-
-        <?php var_dump($_SESSION);
